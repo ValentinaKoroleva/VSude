@@ -1,8 +1,13 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Судебный мониторинг</router-link> |
+    <router-link to="/online">Суды в сети</router-link> |
+    <router-link to="/entrance">Вход в суд</router-link> |
+    <router-link to="/before">До начала заседания</router-link> |
+    <router-link to="/incourt">В суде</router-link> |
+    <router-link to="/about">О нас</router-link>
   </div>
+  
   <router-view/>
 </template>
 
