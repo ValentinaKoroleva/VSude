@@ -1,5 +1,13 @@
 <template>
-  <div class="about">
-    <h1>до</h1>
-  </div>
+    <question-list type="roomentrance"/>
 </template>
+
+<script>
+import QuestionList from '../components/QuestionList.vue'
+export default {
+    name: 'BeforeProcess',
+    components:{
+        QuestionList
+    }
+}
+</script>
