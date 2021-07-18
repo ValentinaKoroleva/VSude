@@ -1,14 +1,17 @@
 <template>
-    <question-list type="incourt"/>
+    <question-list type="general" />
 </template>
 
 <script>
 import QuestionList from '../components/QuestionList.vue'
 export default {
-    name: 'InCourt',
+    name: 'GeneralQuestions',
     components:{
-        QuestionList
+        QuestionList,
     }
 }
 </script>
 
+<style scoped>
+
+</style>

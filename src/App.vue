@@ -1,54 +1,77 @@
 <template>
-
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <p class="text-muted">Мы проводим мониторинг по собственной методике, разработанной с учетом методологии ОБСЕ, норм российского законодательства и накопленного опыта.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
+  <search />
+  <side-menu v-if="true" />
+  <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link class="nav-link active" aria-current="page" to="/">
+            <img src= "./assets/home.png" alt="home"/>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" to="/generalquestions"
+            >
+            <img src= "./assets/generalq.png" alt="home"/>
+            Общие вопросы
+          </router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" to="/entrance">
+            <img src= "./assets/buildingentrance.png" alt="home"/>
+            Вход в суд
+          </router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" to="/before">
+          <img src= "./assets/roomentrance.png" alt="home"/>
+          Вход в зал
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" to="/incourt">
+          <img src= "./assets/incourt.png" alt="home"/>
+          В зале суда
+          </router-link>
+        </li>
+      </ul>
     </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <strong>Наблюдение в судах</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-</header>
-  <div id="nav">
-    <router-link to="/">Судебный мониторинг</router-link> |
-    <router-link to="/online">Суды в сети</router-link> |
-    <router-link to="/entrance">Вход в суд</router-link> |
-    <router-link to="/before">До начала заседания</router-link> |
-    <router-link to="/incourt">В суде</router-link> |
-    <router-link to="/about">О нас</router-link> |
-    <router-link to="/phoneapp">Приложение</router-link>
-  </div>
-  
-  <router-view/>
+    <!-- </div> -->
+  </nav>
+  <router-view />
 </template>
 
+<script>
+import SideMenu from "./components/SideMenu.vue";
+import Search from "./components/Search.vue";
+
+export default {
+  // name:'App',
+  components: {
+    Search,
+    SideMenu,
+  },
+};
+</script>
+
+
 <style>
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #e9f7f9;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #e9f7f9;
+  height: 100%;
 }
 
 #nav {
@@ -63,4 +86,15 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+/* i {
+font-family: fontawesome !important;
+} */
+
+img {
+  width: 2em;
+  height: 2em;
+}
+
+/* #BABABE */
+/* 74C7C5 */
 </style>
