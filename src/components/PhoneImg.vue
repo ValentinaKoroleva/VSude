@@ -3,7 +3,7 @@
 </template>
 
 <style scoped>
-    img {
-        background-image: url(../assets/volcano.jpg) !important;
-    }
+    /* img {
+         background-image: url(../assets/volcano.jpg) !important; 
+    } */
 </style>
