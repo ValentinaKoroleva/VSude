@@ -4,11 +4,10 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <!-- <h5 class="card-title">Общие вопросы</h5> -->
             <p class="card-text">
               <strong>Всё получится!</strong>
               Мы подскажем ответы на всё, что вы хотите знать
-              </p>
+            </p>
           </div>
         </div>
       </div>
@@ -16,53 +15,53 @@
     <div class="row">
       <div class="col-6">
         <div class="card">
+          <img
+            class="card-img w-50 h-50"
+            src="../assets/generalqBig.png"
+            alt="ttt"
+          />
           <div class="card-body">
-            <!-- <h5 class="card-title">Общие вопросы</h5> -->
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="/generalquestions" class="btn btn-primary"
+            <a href="/generalquestions" class="btn btn-primary stretched-link"
               >Общие вопросы</a
             >
           </div>
         </div>
       </div>
       <div class="col-6">
-        <!-- <a href="/entrance" class="btn btn-primary custom-card"> -->
         <div class="card">
+          <img
+            class="card-img w-50 h-50"
+            src="../assets/buildingentranceBig.png"
+            alt="ttt"
+          />
           <div class="card-body">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="/entrance" class="btn btn-primary">Вход в суд</a>
+            <a href="/entrance" class="btn btn-primary stretched-link">Вход в суд</a>
           </div>
         </div>
-        <!-- </a> -->
       </div>
     </div>
     <div class="row">
       <div class="col-6">
         <div class="card">
+          <img
+            class="card-img w-50 h-50"
+            src="../assets/roomentranceBig.png"
+            alt="ttt"
+          />
           <div class="card-body">
-            <!-- <h5 class="card-title">Special title treatment 3</h5> -->
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="/before" class="btn btn-primary">Вход в зал</a>
+            <a href="/before" class="btn btn-primary stretched-link">Вход в зал</a>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="card">
+          <img
+            class="card-img w-50 h-50"
+            src="../assets/incourtBig.png"
+            alt="ttt"
+          />
           <div class="card-body">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="/incourt" class="btn btn-primary">В зале суда</a>
+            <a href="/incourt" class="btn btn-primary stretched-link">В зале суда</a>
           </div>
         </div>
       </div>
