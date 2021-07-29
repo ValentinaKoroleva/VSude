@@ -7,7 +7,7 @@
 import QuestionList from '../components/QuestionList.vue'
 export default {
     name: 'SearchResults',
-    props:['message'],
+    props:['messages'],
     components:{
         QuestionList,
     }

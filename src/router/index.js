@@ -72,6 +72,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Article.vue'),
     // props: route => ({ query: route.query })
     props: true
+  },
+  {
+    path: '/search',
+    name: 'SearchResult',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/SearchResult.vue'),
+    // props: route => ({ query: route.query })
+    // props: {messages: ''}
+    props: true
   }
 ]
 
