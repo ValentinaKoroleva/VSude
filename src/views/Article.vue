@@ -7,13 +7,13 @@
       </p> -->
     </div>
     <div class="attachment" id="attachments"></div>
+    <!-- <a :href=link>test</a> -->
   </div>
 </template>
 
 <script>
 import csv from "@/assets/questions.csv";
 import { useRoute } from "vue-router";
-
 
 export default {
   data() {
@@ -23,6 +23,7 @@ export default {
       attachment: String,
       elementSaved: Object,
       route: Object,
+      // link: require("../assets/pdfs/test.pdf")
     };
   },
   props: ["id"],
@@ -60,13 +61,12 @@ export default {
           img.setAttribute("style", "width:100%;height:100%");
           document.getElementById("attachments").appendChild(img);
         }
-        // if (extension == "pdf") {
-        //   let img = document.createElement("img");
-        //   img.setAttribute("src", require("../assets/jpgs/" + att));
-        //   img.setAttribute("alt", "attach");
-        //   img.setAttribute("style", "width:100%;height:100%");
-        //   document.getElementById("attachments").appendChild(img);
-        // }
+        if (extension == "pdf") {
+          let pdfLink = document.createElement("a");
+          pdfLink.href = require("../assets/pdfs/" + att)
+          pdfLink.innerHTML = "file"
+          document.getElementById("attachments").appendChild(pdfLink);
+        }
       }
     }
   },
