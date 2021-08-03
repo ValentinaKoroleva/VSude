@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-10">
         <div class="card">
           <div class="card-body">
             <p class="card-text">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-5">
         <div class="card">
           <img
             class="card-img w-50 h-50"
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <div class="card">
           <img
             class="card-img w-50 h-50"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-5">
         <div class="card">
           <img
             class="card-img w-50 h-50"
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <div class="card">
           <img
             class="card-img w-50 h-50"

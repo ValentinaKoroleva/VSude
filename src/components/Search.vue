@@ -10,19 +10,25 @@
       >
         <i class="bi bi-list"></i>
       </button>
-      <form class="d-flex">
-        <router-link to="/search"><i class="bi bi-search"></i></router-link>
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          v-model="searchString"
-          list="data"
-        />
-        <datalist id="data">
-          <option v-for="item in searchInProgress" :key="item" :value="item" />
-        </datalist>
+      <form class="d-flex flex-column">
+        <div class="d-flex flex-row">
+          <router-link to="/search"><i class="bi bi-search"></i></router-link>
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            v-model="searchString"
+            list="data"
+          />
+        </div>
+        <div>
+          <ul id="data" v-if="searchInProgress.length > 0">
+            <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
+              <a :href="'/article?id=' + item.id" >{{ item.q }}</a>
+            </li>
+          </ul>
+        </div>
         <!-- <button
           class="btn btn-outline-success custom-search"
           type="submit"
@@ -37,51 +43,47 @@
 
 <script>
 import csv from "@/assets/questions.csv";
-
+import router from "../router"
 export default {
   data() {
     return {
-      searchString:'',
-      QAs:[],
+      searchString: "",
+      QAs: [],
       messageResult: "Ничего не найдено",
-      list: ["HTML", "CSS", "JavaScript"],
+      list: [],
     };
   },
   mounted() {
-      let k = 0;
-      for (let i = 0; i < csv.length; i++) {
-        let element = csv[i];
-        if (element.answer.search(this.searchString)) {
-          // this.list[k] = element.question
-          this.QAs[k] = { id: i, q: element.question, a: element.answer };
-          k++;
-        }
-      }
-  },
-  // watch (){
-  // },
-  computed:{
-    searchInProgress() {
-      let newList = []
-      this.list.forEach(element => {
-        if(element.search(this.searchString)) {
-          newList.push(element)
-        }
-      });
-      return newList
+    document.addEventListener('click', () => {this.searchString = ''})
+    for (let i = 0; i < csv.length; i++) {
+      let element = csv[i];
+      this.list[i] = { id: i, q: element.question, a: element.answer };
     }
   },
-  methods: {
-    findString() {
-      let k = 0;
-      for (let i = 0; i < csv.length; i++) {
-        let element = csv[i];
-        if (element.answer.find(this.searchString)) {
-          this.list[k] = element.question
-          k++;
-        }
+  computed: {
+    searchInProgress() {
+      let newList = [];
+      if (this.searchString === "") {
+        return newList;
       }
+      this.list.forEach((element) => {
+        let reg = new RegExp(this.searchString, "ig");
+        if (reg.test(element.q) || reg.test(element.a)) {
+          newList.push(element);
+        }
+      });
+      return newList;
     },
+  },
+  methods: {
+    resetSearch() {
+      this.searchString = ""
+    },
+    goToQuestion(id) {
+      console.log(id)
+      router.go(0);
+      router.push('/article?id=' + id)
+    }
   },
 };
 </script>
@@ -101,5 +103,20 @@ form {
   color: #b1b1b7;
   background: #ece9e9;
   border: #686767;
+}
+
+#data {
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  border: 1px #ccc solid;
+}
+#data li {
+  display: block;
+  padding: 5px 15px;
+  text-align: left;
 }
 </style>
