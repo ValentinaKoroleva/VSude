@@ -13,6 +13,8 @@
 <script>
 import csv from "@/assets/questions.csv";
 import { useRoute } from "vue-router";
+
+
 export default {
   data() {
     return {
@@ -30,25 +32,7 @@ export default {
     this.elementSaved = csv[route.query.id];
     this.title = element.question;
     // process text
-    let copyAnswer = element.answer;
-    copyAnswer = copyAnswer.replace("\n", "<br>");
-
-    const exSiteStringReg = /\(http(\S+)/gi;
-    let exSiteStrings = [];
-    if (exSiteStringReg.test(element.answer)) {
-      exSiteStrings = element.answer.match(exSiteStringReg);
-    }
-    exSiteStrings.forEach((element) => {
-      let link = document.createElement("a");
-      let href = element.substr(1);
-      href = href.slice(0, -1)
-      link.href = href;
-      link.innerHTML = "ссылка";
-      let linkHTML = link.outerHTML;
-      console.log(linkHTML)
-      copyAnswer = copyAnswer.replace(element, linkHTML);
-      console.log(copyAnswer)
-    });
+    let copyAnswer = this.processText(element.answer);
 
     document
       .getElementById("fullText")
@@ -85,6 +69,44 @@ export default {
         // }
       }
     }
+  },
+  methods: {
+    processText(text) {
+      let copyAnswer = text;
+      copyAnswer = copyAnswer.replace("\n", "<br>");
+
+      const exSiteStringReg = /\(http(\S+)/gi;
+      let exSiteStrings = [];
+      if (exSiteStringReg.test(text)) {
+        exSiteStrings = text.match(exSiteStringReg);
+      }
+      exSiteStrings.forEach((el) => {
+        let link = document.createElement("a");
+        let href = el.substr(1);
+        href = href.slice(0, -1);
+        link.href = href;
+        link.innerHTML = "ссылка";
+        let linkHTML = link.outerHTML;
+        copyAnswer = copyAnswer.replace(el, linkHTML);
+      });
+
+      const inSiteStringReg = /\(question_\d+\)/gi;
+      let inSiteStrings = [];
+      if (inSiteStringReg.test(text)) {
+        inSiteStrings = text.match(inSiteStringReg);
+      }
+      inSiteStrings.forEach((el) => {
+        let link = document.createElement("a");
+        let id = el.split("_")[1];
+        id = id.slice(0, -1);
+        let href = "/article?id=" + id;
+        link.href = href;
+        link.innerHTML = "ссылка";
+        let linkHTML = link.outerHTML;
+        copyAnswer = copyAnswer.replace(el, linkHTML);
+      });
+      return copyAnswer;
+    },
   },
 };
 </script>
