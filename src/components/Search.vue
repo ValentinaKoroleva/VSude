@@ -12,7 +12,7 @@
       </button>
       <form class="d-flex flex-column">
         <div class="d-flex flex-row">
-          <router-link to="/search"><i class="bi bi-search"></i></router-link>
+          <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
           <input
             class="form-control me-2"
             type="search"
@@ -119,4 +119,10 @@ form {
   padding: 5px 15px;
   text-align: left;
 }
+/* label {
+  width: 90%;
+  border-radius: 18px;
+  margin: 1%;
+  background-image: url('<img src="https://img.icons8.com/ios/50/000000/external-search-logistic-delivery-kiranshastry-gradient-kiranshastry.png"/>');
+} */
 </style>
