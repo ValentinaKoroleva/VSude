@@ -63,8 +63,8 @@ export default {
         }
         if (extension == "pdf") {
           let pdfLink = document.createElement("a");
-          pdfLink.href = require("../assets/pdfs/" + att)
-          pdfLink.innerHTML = "file"
+          pdfLink.href = require("../assets/pdfs/" + att);
+          pdfLink.innerHTML = "file";
           document.getElementById("attachments").appendChild(pdfLink);
         }
       }
@@ -74,10 +74,13 @@ export default {
     processText(text) {
       let copyAnswer = text;
       copyAnswer = copyAnswer.replace("\n", "<br>");
+      copyAnswer = copyAnswer.replace("$", "<br>");
 
       const exSiteStringReg = /\(http(\S+)/gi;
       let exSiteStrings = [];
       if (exSiteStringReg.test(text)) {
+        let stringBefore = text.split("(http")[0];
+        console.log(stringBefore.split(' ').slice(0, -1)[0])
         exSiteStrings = text.match(exSiteStringReg);
       }
       exSiteStrings.forEach((el) => {
@@ -85,7 +88,7 @@ export default {
         let href = el.substr(1);
         href = href.slice(0, -1);
         link.href = href;
-        link.innerHTML = "ссылка";
+        link.innerHTML = "См.";
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -101,7 +104,7 @@ export default {
         id = id.slice(0, -1);
         let href = "/article?id=" + id;
         link.href = href;
-        link.innerHTML = "ссылка";
+        link.innerHTML = "Вопрос " + id;
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });

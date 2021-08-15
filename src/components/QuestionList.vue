@@ -52,7 +52,8 @@ export default {
     let k = 0;
     for (let i = 0; i < csv.length; i++) {
       let element = csv[i];
-      let answer = element.answer.split("\n")[0];
+      // console.log(element.answer)
+      let answer = element.answer.split("$")[0];
       if (element.answer.length > answer.length) {
         this.moreOn = true;
       }
