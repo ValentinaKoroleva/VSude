@@ -22,7 +22,7 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <div v-html="el.a"></div>
+          <div class="answer" v-html="el.a"></div>
           <p>
             <router-link :to="'/article?id=' + el.id" v-if="moreOn[el.id]"
               >Подробнее</router-link
@@ -46,6 +46,7 @@ export default {
   name: "QuestionList",
   data() {
     return {
+      allQAs: [],
       QAs: [],
       moreOn: {},
       inconsistency: {
@@ -65,6 +66,14 @@ export default {
         term: element.term,
         short: element.short,
         long: element.long,
+      };
+    }
+    for (let i = 0; i < csv.length; i++) {
+      let element = csv[i];
+      this.allQAs[i] = {
+        id: element.id,
+        q: element.question,
+        a: element.answer,
       };
     }
     // console.log(this.glossary)
@@ -141,6 +150,8 @@ export default {
       const exSiteStringReg = /\(http(\S+)/gi;
       let exSiteStrings = [];
       if (exSiteStringReg.test(text)) {
+        let stringBefore = text.split("(http")[0];
+        console.log(stringBefore.split(" ").slice(0, -1)[0]);
         exSiteStrings = text.match(exSiteStringReg);
       }
       exSiteStrings.forEach((el) => {
@@ -148,7 +159,7 @@ export default {
         let href = el.substr(1);
         href = href.slice(0, -1);
         link.href = href;
-        link.innerHTML = "См.";
+        link.innerHTML = " Пример по ссылке. ";
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -162,9 +173,12 @@ export default {
         let link = document.createElement("a");
         let id = el.split("_")[1];
         id = id.slice(0, -1);
+        let question = this.allQAs.find((que) => {
+          if (que.id == id) {return que}
+          }).q
         let href = "/article?id=" + id;
         link.href = href;
-        link.innerHTML = "Вопрос " + id;
+        link.innerHTML = "См. также " + question;
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -238,6 +252,9 @@ pre {
   border-radius: 18px;
 }
 p {
+  text-align: left;
+}
+.answer {
   text-align: left;
 }
 </style>
