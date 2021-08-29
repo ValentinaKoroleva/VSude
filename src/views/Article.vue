@@ -99,8 +99,8 @@ export default {
       const exSiteStringReg = /\(http(\S+)/gi;
       let exSiteStrings = [];
       if (exSiteStringReg.test(text)) {
-        // let stringBefore = text.split("(http")[0];
-        // console.log(stringBefore.split(' ').slice(0, -1)[0])
+        let stringBefore = text.split("(http")[0];
+        console.log(stringBefore.split(' ').slice(0, -1)[0])
         exSiteStrings = text.match(exSiteStringReg);
       }
       exSiteStrings.forEach((el) => {
