@@ -10,7 +10,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/generalquestions"
+          <router-link class="nav-link active" to="/questionList/generalquestions"
             >
             <img src= "./assets/generalq.png" alt="home"/>
             Общие вопросы
@@ -18,20 +18,20 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/entrance">
+          <router-link class="nav-link active" to="/questionList/entrance">
             <img src= "./assets/buildingentrance.png" alt="home"/>
             Вход в суд
           </router-link
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/before">
+          <router-link class="nav-link active" to="/questionList/before">
           <img src= "./assets/roomentrance.png" alt="home"/>
           Вход в зал
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/incourt">
+          <router-link class="nav-link active" to="/questionList/incourt">
           <img src= "./assets/incourt.png" alt="home"/>
           В зале суда
           </router-link>

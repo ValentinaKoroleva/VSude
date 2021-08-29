@@ -15,27 +15,23 @@
           <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
           <input
             class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
+            type="text"
+            placeholder="Поиск"
+            aria-label="Поиск"
             v-model="searchString"
             list="data"
+            v-on:keydown.enter.prevent="search()"
+            v-on:keyup.enter.prevent
+            v-on:click.prevent
           />
         </div>
         <div>
           <ul id="data" v-if="searchInProgress.length > 0">
             <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
-              <a :href="'/article?id=' + item.id" >{{ item.q }}</a>
+              <a :href="'/article?id=' + item.id">{{ item.q }}</a>
             </li>
           </ul>
         </div>
-        <!-- <button
-          class="btn btn-outline-success custom-search"
-          type="submit"
-          aria-placeholder="Search"
-        >
-          <i class="bi bi-search"></i>
-        </button> -->
       </form>
     </div>
   </nav>
@@ -43,7 +39,7 @@
 
 <script>
 import csv from "@/assets/questions.csv";
-import router from "../router"
+import router from "../router";
 export default {
   data() {
     return {
@@ -54,7 +50,11 @@ export default {
     };
   },
   mounted() {
-    document.addEventListener('click', () => {this.searchString = ''})
+    let listener = () => {
+      this.searchString = "";
+    }
+    document.addEventListener("click", listener);
+    document.querySelector('input').removeEventListener('click', listener)
     for (let i = 0; i < csv.length; i++) {
       let element = csv[i];
       this.list[i] = { id: i, q: element.question, a: element.answer };
@@ -77,12 +77,17 @@ export default {
   },
   methods: {
     resetSearch() {
-      this.searchString = ""
+      this.searchString = "";
     },
     goToQuestion(id) {
-      console.log(id)
+      console.log(id);
       router.go(0);
-      router.push('/article?id=' + id)
+      router.push("/article?id=" + id);
+    },
+    search(){
+      // router.push("/questionList/searched");
+      router.push({path:"/questionList/searched", query: {q: this.searchString}});
+      this.searchString = ''
     }
   },
 };

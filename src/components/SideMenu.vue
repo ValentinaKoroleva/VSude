@@ -1,23 +1,36 @@
 <template>
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
-  <div class="offcanvas-header">
-    <!-- <h5 id="offcanvasLeftLabel">Что это?</h5> -->
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="offcanvasLeft"
+    aria-labelledby="offcanvasLeftLabel"
+  >
+    <div class="offcanvas-header">
+      <!-- <h5 id="offcanvasLeftLabel">Что это?</h5> -->
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="sideMenuList">
+        <li>
+          <a href="/about">Что это?</a>
+        </li>
+        <li>
+          <a href="/what-is-court-monitoring">О судебном мониторинге </a>
+        </li>
+        <li>
+          <a href="/glossary">Глоссарий </a>
+        </li>
+        <li>
+          <a href="/contacts">О нас</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="offcanvas-body">
-    <ul class="sideMenuList">
-      <li>
-         <a href="/about">Что это?</a>
-      </li>
-      <li>
-        <a href="/contacts">О нас</a>
-      </li>
-      <li>
-        <a href="https://courtmonitoring.org/ru">О судебном мониторинге </a>
-      </li>
-    </ul>
-  </div>
-</div>
 </template>
 
 
@@ -47,7 +60,6 @@ main {
   fill: currentColor;
   min-width: 10em !important;
   min-height: 10em !important;
-
 }
 
 .dropdown-toggle {

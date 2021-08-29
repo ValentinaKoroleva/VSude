@@ -1,8 +1,6 @@
 <template>
-  <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
-
   <div class="accordion" id="accordionExample">
-    <div class="accordion-item" v-for="el in QAs" :key="el">
+    <div class="accordion-item" v-for="el in gloss" :key="el">
       <h2 class="accordion-header" id="headingOne">
         <button
           class="accordion-button"
@@ -12,7 +10,7 @@
           aria-expanded="false"
           v-bind:aria-controls="'collapseOne' + el.id"
         >
-          {{ el.q }}
+          {{ el.term }}
         </button>
       </h2>
       <div
@@ -23,10 +21,10 @@
       >
         <div class="accordion-body">
           <p>
-            {{ el.a }}
-            <router-link :to="'/article?id=' + el.id" v-if="moreOn"
-              >Подробнее</router-link
-            >
+            {{ el.short }}
+          </p>
+          <p>
+            {{ el.long }}
           </p>
         </div>
       </div>
@@ -38,46 +36,24 @@
 
 
 <script>
-import csv from "@/assets/questions.csv";
+import csv from "@/assets/glossary.csv";
 
 export default {
+  name: "Glossary",
   data() {
     return {
-      QAs: [],
-      moreOn: false,
+      gloss: [],
     };
   },
-  props: ["type"],
-  emits: ["update:type"],
-  computed: {
-    test() {
-      return this.type;
-    },
-  },
-  mounted() {
-    console.log(this.type);
-  },
   created() {
-    console.log(this.type);
-    if (this.type == "searched") {
-      console.log(this.type);
-    } else {
-      let k = 0;
-      for (let i = 0; i < csv.length; i++) {
-        let element = csv[i];
-        // console.log(element.answer)
-        let answer = element.answer.split("$")[0];
-        if (element.answer.length > answer.length) {
-          this.moreOn = true;
-        }
-        // console.log(element.answer.split("\n"))
-        if (element.type == this.type) {
-          this.QAs[k] = { id: i, q: element.question, a: answer };
-          k++;
-        }
-      }
-      // console.log(this.QAs.length)
-    }
+      csv.forEach((element) => {
+        this.gloss.push({
+          id: element.id,
+          term: element.term,
+          short: element.short,
+          long: element.long,
+        });
+      });
   },
   methods: {},
 };

@@ -83,9 +83,46 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/SearchResult.vue'),
-    // props: route => ({ query: route.query })
-    // props: {messages: ''}
     props: true
+  },
+  {
+    path: '/glossary',
+    name: 'Glossary',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Glossary.vue'),
+    props: true
+  },
+  {
+    path: '/questionList/:category',
+    name: 'QuestionList',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/QuestionList.vue'),
+    // props: true,
+    props: (route) => ({ query: route.query.q })
+  },
+  {
+    path: '/what-is-court-monitoring',
+    name: 'WhatIsCourtMonitoring',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/WhatIsCourtMon.vue'),
+    // props: true,
+    props: (route) => ({ query: route.query.q })
+  },
+  {
+    path: '/glossary',
+    name: 'Glossary',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Glossary.vue'),
+    // props: true,
+    props: (route) => ({ query: route.query.q })
   }
 ]
 
