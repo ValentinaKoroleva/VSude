@@ -57,7 +57,7 @@ export default {
     document.querySelector('input').removeEventListener('click', listener)
     for (let i = 0; i < csv.length; i++) {
       let element = csv[i];
-      this.list[i] = { id: i, q: element.question, a: element.answer };
+      this.list[i] = { id: element.id, q: element.question, a: element.answer };
     }
   },
   computed: {

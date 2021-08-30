@@ -24,7 +24,9 @@
         <div class="accordion-body">
           <div class="answer" v-html="el.a"></div>
           <p>
-            <router-link :to="'/article/question?id=' + el.id" v-if="moreOn[el.id]"
+            <router-link
+              :to="'/article/question?id=' + el.id"
+              v-if="moreOn[el.id]"
               >Подробнее</router-link
             >
           </p>
@@ -51,8 +53,8 @@ export default {
       moreOn: {},
       inconsistency: {
         general: "generalquestions",
-        entrance: "buildingentrance",
-        before: "roomentrance",
+        buildingentrance: "entrance",
+        roomentrance: "before",
         incourt: "incourt",
       },
       glossary: [],
@@ -105,7 +107,10 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
-          if (element.answer.length > answer.length) {
+          if (
+            element.answer.length > answer.length ||
+            element.attachment != ""
+          ) {
             this.moreOn[element.id] = true;
           } else {
             this.moreOn[element.id] = false;
@@ -116,6 +121,7 @@ export default {
               id: element.id,
               q: element.question,
               a: answer,
+              attachment: element.attachment,
             });
           }
         });
@@ -123,12 +129,15 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
-          if (element.answer.length > answer.length) {
+          if (
+            element.answer.length > answer.length ||
+            element.attachment != null
+          ) {
             this.moreOn[element.id] = true;
           } else {
             this.moreOn[element.id] = false;
           }
-          if (element.type == this.inconsistency[category]) {
+          if (this.inconsistency[element.type] == category) {
             this.QAs.push({ id: element.id, q: element.question, a: answer });
           }
         });

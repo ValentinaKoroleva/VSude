@@ -104,6 +104,7 @@ export function getAllQAs() {
             id: element.id,
             q: element.question,
             a: element.answer,
+            attachment: element.attachment
         };
     }
     return allQAs

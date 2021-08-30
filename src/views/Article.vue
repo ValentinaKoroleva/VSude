@@ -32,7 +32,6 @@ export default {
   mounted() {
     // console.log('fff')
     const route = useRoute();
-    console.log(route);
     let element = {};
     let copyAnswer = "";
     let fullText = "";
@@ -79,19 +78,19 @@ export default {
     glossaryEntries.map(function (entry) {
       entry.setAttribute("style", "color:blue;text-decoration:underline");
     });
-    console.log(glossaryEntries);
 
     // this.fulltext = element.a.split("\n");
     this.fulltext = fullText.split("\n");
     // console.log(fullText)
     this.attachment = "";
-
     if (element.attachment != "" && element.attachment != null) {
-      let extension = element.attachment.split(".")[1];
       let attachs = element.attachment.split(";");
-
       for (let att of attachs) {
+        // console.log(att.trim())
+        att = att.trim()
+        let extension = att.split(".")[1];
         if (extension == "gif") {
+          // console.log(att);
           let img = document.createElement("img");
           img.setAttribute("src", require("../assets/gifs/" + att));
           img.setAttribute("alt", "attach");
