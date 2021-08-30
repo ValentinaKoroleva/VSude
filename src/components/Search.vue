@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
+  <nav class="navbar ">
+    <div class="container-fluid d-flex flex-nowrap">
       <button
-        class="btn btn-primary"
+        class="btn d-flex justify-content-start"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasLeft"
@@ -10,11 +10,11 @@
       >
         <i class="bi bi-list"></i>
       </button>
-      <form class="d-flex flex-column">
-        <div class="d-flex flex-row">
+      <form class="d-flex flex-column ">
+        <div class="d-flex flex-row  d-flex justify-content-start">
           <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
           <input
-            class="form-control me-2"
+            class="form-control me-2 custom-search "
             type="text"
             placeholder="Поиск"
             aria-label="Поиск"
@@ -94,21 +94,24 @@ export default {
 </script>
 
 <style scoped>
+
 form {
-  width: 90%;
+  width: 100%;
   border-radius: 18px;
   margin: 1%;
 }
 .custom-search {
-  color: #b1b1b7;
-  background: #ece9e9;
-  border: #474747;
+  /* color: #b1b1b7; */
+  /* background: #ece9e9; */
+  /* border: #474747; */
+  width:90%;
+  border-radius: 18px;
 }
-.custom-search:hover {
+/* .custom-search:hover {
   color: #b1b1b7;
   background: #ece9e9;
   border: #686767;
-}
+} */
 
 #data {
   font-size: 12px;
@@ -123,6 +126,9 @@ form {
   display: block;
   padding: 5px 15px;
   text-align: left;
+}
+.bi {
+  font-size: 2em;
 }
 /* label {
   width: 90%;

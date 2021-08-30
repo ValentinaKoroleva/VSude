@@ -94,7 +94,7 @@ export default {
           let img = document.createElement("img");
           img.setAttribute("src", require("../assets/gifs/" + att));
           img.setAttribute("alt", "attach");
-          img.setAttribute("style", "width:100%;height:100%");
+          img.setAttribute("style", "width:75%;height:75%");
           document.getElementById("attachments").appendChild(img);
         }
         if (extension == "jpg") {
@@ -131,10 +131,6 @@ p {
 }
 .article {
   padding: 5%;
-}
-img {
-  width: 100%;
-  height: 100%;
 }
 .fullText {
   text-align: left;

@@ -35,6 +35,9 @@
     </div>
   </div>
 
+
+  
+
   <div class="bottomLine"></div>
 </template>
 
@@ -160,12 +163,21 @@ pre {
 }
 .accordion-item {
   background: #e9f7f9;
+  border: none;
+  /* border-radius: 18px; */
 }
 .accordion-header {
   margin: 1%;
 }
 .accordion-button {
   background: #ffffff;
+  border-radius: 18px !important;
+}
+.accordion-body {
+  background: #ffffff;
+  margin: 1%;
+
+  border-radius: 18px !important;
 }
 .headingOne {
   background: #ffffff;

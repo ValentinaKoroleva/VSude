@@ -2,38 +2,77 @@
   <search />
   <side-menu v-if="true" />
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
-    <div class="container-fluid">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">
-            <img src= "./assets/home.png" alt="home"/>
+    <div class="container-fluid d-flex flex-nowrap">
+      <ul class="navbar-nav d-flex flex-fill">
+        <li class="nav-item flex-fill">
+          <router-link
+            class="nav-link"
+            aria-current="page"
+            to="/"
+          >
+            <img src="./assets/home.png" alt="home" />
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" to="/questionList/generalquestions"
-            >
-            <img src= "./assets/generalq.png" alt="home"/>
-            Общие вопросы
-          </router-link
+        <li class="nav-item flex-fill">
+          <router-link
+            id="general"
+            class="nav-link"
+            to="/questionList/generalquestions"
           >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" to="/questionList/entrance">
-            <img src= "./assets/buildingentrance.png" alt="home"/>
-            Вход в суд
-          </router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" to="/questionList/before">
-          <img src= "./assets/roomentrance.png" alt="home"/>
-          Вход в зал
+            <figure class="figure">
+              <img
+                src="./assets/generalq.png"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <!-- <img src= "./assets/generalq-active.png" alt="home"/> -->
+              <figcaption>Общие вопросы</figcaption>
+            </figure>
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" to="/questionList/incourt">
-          <img src= "./assets/incourt.png" alt="home"/>
-          В зале суда
+        <li class="nav-item flex-fill">
+          <router-link
+            class="nav-link"
+            to="/questionList/entrance"
+          >
+            <figure class="figure">
+              <img
+                src="./assets/buildingentrance.png"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <figcaption>Вход в суд</figcaption>
+            </figure>
+          </router-link>
+        </li>
+        <li class="nav-item flex-fill">
+          <router-link
+            class="nav-link"
+            to="/questionList/before"
+          >
+            <figure class="figure">
+              <img
+                src="./assets/roomentrance.png"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <figcaption>Вход в зал</figcaption>
+            </figure>
+          </router-link>
+        </li>
+        <li class="nav-item flex-fill">
+          <router-link
+            class="nav-link"
+            to="/questionList/incourt"
+          >
+            <figure class="figure">
+              <img
+                src="./assets/incourt.png"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <figcaption>В зале суда</figcaption>
+            </figure>
           </router-link>
         </li>
       </ul>
@@ -41,6 +80,7 @@
     <!-- </div> -->
   </nav>
   <router-view />
+  <div class="bottomLine"></div>
 </template>
 
 <script>
@@ -86,15 +126,22 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-/* i {
-font-family: fontawesome !important;
-} */
 
 img {
   width: 2em;
   height: 2em;
 }
-
+figcaption {
+  font-size: 0.75rem;
+}
+#general {
+  /* background-image: url("./assets/generalq.png"); */
+}
+.bottomLine {
+  height: 20%;
+}
 /* #BABABE */
+/* hsl(240, 3%, 74%) */
 /* 74C7C5 */
+/* hsl(179, 43%, 62%) */
 </style>
