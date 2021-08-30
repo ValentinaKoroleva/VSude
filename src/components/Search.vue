@@ -28,7 +28,7 @@
         <div>
           <ul id="data" v-if="searchInProgress.length > 0">
             <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
-              <a :href="'/article?id=' + item.id">{{ item.q }}</a>
+              <a :href="'/article/question?id=' + item.id">{{ item.q }}</a>
             </li>
           </ul>
         </div>
@@ -82,7 +82,7 @@ export default {
     goToQuestion(id) {
       console.log(id);
       router.go(0);
-      router.push("/article?id=" + id);
+      router.push("/article/question?id=" + id);
     },
     search(){
       // router.push("/questionList/searched");

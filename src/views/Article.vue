@@ -7,42 +7,59 @@
 </template>
 
 <script>
-import csv from "@/assets/questions.csv";
-import gloss from "@/assets/glossary.csv";
+// import csv from "@/assets/questions.csv";
+// import gloss from "@/assets/glossary.csv";
 
 import { useRoute } from "vue-router";
 import { Popover } from "bootstrap";
-
+import { processText, getGlossary, getAllQAs } from "../service/processCSV";
 export default {
   data() {
     return {
       title: String,
       fulltext: [],
       attachment: String,
-      elementSaved: Object,
       route: Object,
       glossary: [],
+      allQAs: [],
     };
   },
   props: ["id"],
   created() {
-    for (let i = 0; i < gloss.length; i++) {
-      let element = gloss[i];
-      this.glossary[i] = {
-        id: element.id,
-        term: element.term,
-        short: element.short,
-        long: element.long,
-      };
-    }
+    this.glossary = getGlossary();
+    this.allQAs = getAllQAs();
   },
   mounted() {
+    // console.log('fff')
     const route = useRoute();
-    let element = csv[route.query.id];
-    this.elementSaved = csv[route.query.id];
-    this.title = element.question;
-    // process text
-    let copyAnswer = this.processText(element.answer);
+    console.log(route);
+    let element = {};
+    let copyAnswer = "";
+    let fullText = "";
+    if (route.params.category == "question") {
+      // element = csv[route.query.id];
+      element = this.allQAs.find((que) => {
+        if (que.id == route.query.id) {
+          return que;
+        }
+      });
+      this.title = element.q;
+      // process text
+      fullText = element.a;
+      copyAnswer = processText(fullText);
+    }
+    if (route.params.category == "term") {
+      // element = this.glossary[route.query.id];
+      element = this.glossary.find((ob) => {
+        if (ob.id == route.query.id) {
+          return ob;
+        }
+      });
+      this.title = element.term;
+      // process text
+      fullText = element.short + "\n" + element.long;
+      copyAnswer = processText(fullText);
+    }
 
     document
       .getElementById("fullText")
@@ -60,11 +77,13 @@ export default {
       document.querySelectorAll('[id^="gloss-"]')
     );
     glossaryEntries.map(function (entry) {
-      entry.setAttribute('style', 'color:blue;text-decoration:underline')
+      entry.setAttribute("style", "color:blue;text-decoration:underline");
     });
-    console.log(glossaryEntries)
+    console.log(glossaryEntries);
 
-    this.fulltext = element.answer.split("\n");
+    // this.fulltext = element.a.split("\n");
+    this.fulltext = fullText.split("\n");
+    // console.log(fullText)
     this.attachment = "";
 
     if (element.attachment != "" && element.attachment != null) {
@@ -95,95 +114,7 @@ export default {
       }
     }
   },
-  methods: {
-    processText(text) {
-      let copyAnswer = text;
-      copyAnswer = copyAnswer.replace("\n", "<br>");
-      copyAnswer = copyAnswer.replace("$", "<br>");
-      const exSiteStringReg = /\(http(\S+)/gi;
-      let exSiteStrings = [];
-      if (exSiteStringReg.test(text)) {
-        // let stringBefore = text.split("(http")[0];
-        // console.log(stringBefore.split(" ").slice(0, -1)[0]);
-        exSiteStrings = text.match(exSiteStringReg);
-      }
-      exSiteStrings.forEach((el) => {
-        let link = document.createElement("a");
-        let href = el.substr(1);
-        href = href.slice(0, -1);
-        link.href = href;
-        link.innerHTML = " Пример по ссылке. ";
-        let linkHTML = link.outerHTML;
-        copyAnswer = copyAnswer.replace(el, linkHTML);
-      });
-
-      const inSiteStringReg = /\(question_\d+\)/gi;
-      let inSiteStrings = [];
-      if (inSiteStringReg.test(text)) {
-        inSiteStrings = text.match(inSiteStringReg);
-      }
-      inSiteStrings.forEach((el) => {
-        let link = document.createElement("a");
-        let id = el.split("_")[1];
-        id = id.slice(0, -1);
-        let question = this.allQAs.find((que) => {
-          if (que.id == id) {
-            return que;
-          }
-        }).q;
-        let href = "/article?id=" + id;
-        link.href = href;
-        link.innerHTML = " См. также " + question;
-        let linkHTML = link.outerHTML;
-        copyAnswer = copyAnswer.replace(el, linkHTML);
-      });
-
-      const glossaryReg = /\(glossary_\d+\)/gi;
-      let glossaryStrings = [];
-      if (glossaryReg.test(text)) {
-        glossaryStrings = text.match(glossaryReg);
-      }
-      glossaryStrings.forEach((el) => {
-        let id = el.split("_")[1];
-        id = id.slice(0, -1);
-        let termObject = this.glossary.find((ob) => {
-          if (ob.id == id) {
-            return ob.term;
-          }
-        });
-        let term = termObject.term;
-        let link = document.createElement("a");
-        let linkTerm = document.createElement("a");
-        // let linkTermHTML = "";
-        if (termObject.long.length > 0) {
-          let href = "/term?id=" + termObject.id;
-          linkTerm.href = href;
-          link.innerHTML = " Подробнее.";
-          // linkTermHTML = linkTerm.outerHTML;
-        }
-        link.setAttribute("tabindex", 0);
-        link.setAttribute("id", "gloss-" + id);
-        link.setAttribute("data-bs-toggle", "popover");
-        link.setAttribute("data-bs-trigger", "click");
-        link.title = term;
-        let pop = document.createElement("div");
-        pop.setAttribute("class", "popover-body");
-        let popText = document.createElement("p");
-        popText.innerHTML = termObject.short;
-        pop.append(popText);
-        pop.append(linkTerm);
-        link.setAttribute("data-bs-content", pop.outerHTML);
-        // console.log(linkTermHTML)
-        // link.setAttribute("data-bs-template", termObject.short + linkTermHTML);
-        // console.log(link)
-        link.innerHTML = " (" + term + ") ";
-        let linkHTML = link.outerHTML;
-        copyAnswer = copyAnswer.replace(el, linkHTML);
-      });
-
-      return copyAnswer;
-    },
-  },
+  methods: {},
 };
 </script>
 
