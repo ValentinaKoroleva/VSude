@@ -13,7 +13,6 @@ import gloss from "@/assets/glossary.csv";
 import { useRoute } from "vue-router";
 import { Popover } from "bootstrap";
 
-
 export default {
   data() {
     return {
@@ -54,11 +53,17 @@ export default {
       document.querySelectorAll('[data-bs-toggle="popover"]')
     );
     popoverTriggerList.map(function (popoverTriggerEl) {
-      return new Popover(popoverTriggerEl, {container: 'body', html: true});
+      return new Popover(popoverTriggerEl, { container: "body", html: true });
     });
-    console.log(document.querySelectorAll('[data-bs-toggle="popover"]')[0])
+    // change style
+    var glossaryEntries = [].slice.call(
+      document.querySelectorAll('[id^="gloss-"]')
+    );
+    glossaryEntries.map(function (entry) {
+      entry.setAttribute('style', 'color:blue;text-decoration:underline')
+    });
+    console.log(glossaryEntries)
 
-    //
     this.fulltext = element.answer.split("\n");
     this.attachment = "";
 
@@ -95,12 +100,11 @@ export default {
       let copyAnswer = text;
       copyAnswer = copyAnswer.replace("\n", "<br>");
       copyAnswer = copyAnswer.replace("$", "<br>");
-
       const exSiteStringReg = /\(http(\S+)/gi;
       let exSiteStrings = [];
       if (exSiteStringReg.test(text)) {
-        let stringBefore = text.split("(http")[0];
-        console.log(stringBefore.split(' ').slice(0, -1)[0])
+        // let stringBefore = text.split("(http")[0];
+        // console.log(stringBefore.split(" ").slice(0, -1)[0]);
         exSiteStrings = text.match(exSiteStringReg);
       }
       exSiteStrings.forEach((el) => {
@@ -108,7 +112,7 @@ export default {
         let href = el.substr(1);
         href = href.slice(0, -1);
         link.href = href;
-        link.innerHTML = "См.";
+        link.innerHTML = " Пример по ссылке. ";
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -122,9 +126,14 @@ export default {
         let link = document.createElement("a");
         let id = el.split("_")[1];
         id = id.slice(0, -1);
+        let question = this.allQAs.find((que) => {
+          if (que.id == id) {
+            return que;
+          }
+        }).q;
         let href = "/article?id=" + id;
         link.href = href;
-        link.innerHTML = "Вопрос " + id;
+        link.innerHTML = " См. также " + question;
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -145,29 +154,29 @@ export default {
         let term = termObject.term;
         let link = document.createElement("a");
         let linkTerm = document.createElement("a");
-        let linkTermHTML = "";
+        // let linkTermHTML = "";
         if (termObject.long.length > 0) {
           let href = "/term?id=" + termObject.id;
           linkTerm.href = href;
-          link.innerHTML = "Подробнее";
-          linkTermHTML = linkTerm.outerHTML;
+          link.innerHTML = " Подробнее.";
+          // linkTermHTML = linkTerm.outerHTML;
         }
         link.setAttribute("tabindex", 0);
         link.setAttribute("id", "gloss-" + id);
         link.setAttribute("data-bs-toggle", "popover");
         link.setAttribute("data-bs-trigger", "click");
         link.title = term;
-        let pop = document.createElement('div')
-        pop.setAttribute('class', 'popover-body')
-        let popText = document.createElement('p')
-        popText.innerHTML = termObject.short
-        pop.append(popText)
-        pop.append(linkTerm)
+        let pop = document.createElement("div");
+        pop.setAttribute("class", "popover-body");
+        let popText = document.createElement("p");
+        popText.innerHTML = termObject.short;
+        pop.append(popText);
+        pop.append(linkTerm);
         link.setAttribute("data-bs-content", pop.outerHTML);
-        console.log(linkTermHTML)
+        // console.log(linkTermHTML)
         // link.setAttribute("data-bs-template", termObject.short + linkTermHTML);
         // console.log(link)
-        link.innerHTML = "(См. " + term + ")";
+        link.innerHTML = " (" + term + ") ";
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
       });
@@ -199,5 +208,10 @@ img {
 }
 .fullText {
   text-align: left;
+}
+a[id^="gloss-"] {
+  color: red;
+  font-style: italic !important;
+  font-weight: 100 !important;
 }
 </style>

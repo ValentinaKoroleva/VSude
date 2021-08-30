@@ -79,7 +79,7 @@ export default {
     // console.log(this.glossary)
   },
   mounted() {
-    console.log(this.$route.query.q);
+    // console.log(this.$route.query.q);
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
@@ -150,8 +150,8 @@ export default {
       const exSiteStringReg = /\(http(\S+)/gi;
       let exSiteStrings = [];
       if (exSiteStringReg.test(text)) {
-        let stringBefore = text.split("(http")[0];
-        console.log(stringBefore.split(" ").slice(0, -1)[0]);
+        // let stringBefore = text.split("(http")[0];
+        // console.log(stringBefore.split(" ").slice(0, -1)[0]);
         exSiteStrings = text.match(exSiteStringReg);
       }
       exSiteStrings.forEach((el) => {
