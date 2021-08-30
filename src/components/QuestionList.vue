@@ -24,7 +24,7 @@
         <div class="accordion-body">
           <p>
             {{ el.a }}
-            <router-link :to="'/article?id=' + el.id" v-if="moreOn"
+            <router-link :to="'/article/question?id=' + el.id" v-if="moreOn"
               >Подробнее</router-link
             >
           </p>

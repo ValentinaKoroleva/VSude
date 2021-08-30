@@ -68,7 +68,7 @@ export default {
     this.allQAs = getAllQAs();
   },
   mounted() {
-    // console.log(this.$route.query.q);
+    console.log("mounted");
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
@@ -132,6 +132,7 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
+          console.log(answer)
           if (
             element.answer.length > answer.length ||
             element.attachment != null

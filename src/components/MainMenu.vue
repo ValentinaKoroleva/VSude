@@ -28,7 +28,7 @@
               card-img-overlay
             "
           >
-            <a href="/generalquestions" class="card-link stretched-link"
+            <a href="/questionList/generalquestions" class="card-link stretched-link"
               >Общие вопросы</a
             >
           </div>
@@ -49,7 +49,7 @@
               card-img-overlay
             "
           >
-            <a href="/entrance" class="card-link stretched-link">Вход в суд</a>
+            <a href="/questionList/entrance" class="card-link stretched-link">Вход в суд</a>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
               card-img-overlay
             "
           >
-            <a href="/before" class="card-link stretched-link">Вход в зал</a>
+            <a href="/questionList/before" class="card-link stretched-link">Вход в зал</a>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
               card-img-overlay
             "
           >
-            <a href="/incourt" class="card-link stretched-link">В зале суда</a>
+            <a href="/questionList/incourt" class="card-link stretched-link">В зале суда</a>
           </div>
         </div>
       </div>
