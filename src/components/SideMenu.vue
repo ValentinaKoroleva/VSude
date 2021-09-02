@@ -17,16 +17,16 @@
     <div class="offcanvas-body">
       <ul class="sideMenuList">
         <li>
-          <a href="/about">Что это?</a>
+          <img src="../assets/icons/about.svg" alt="about"><a href="/about">Что тут можно узнать</a>
         </li>
         <li>
-          <a href="/what-is-court-monitoring">О судебном мониторинге </a>
+          <a href="/what-is-court-monitoring">Судебный мониторинг</a>
         </li>
         <li>
-          <a href="/glossary">Глоссарий </a>
+          <a href="/glossary">Глоссарий</a>
         </li>
         <li>
-          <a href="/contacts">О нас</a>
+          <a href="/contacts">Как с нами связаться</a>
         </li>
       </ul>
     </div>

@@ -1,24 +1,24 @@
 <template>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
 
-  <div class="accordion" id="accordionExample">
-    <div class="accordion-item" v-for="el in QAs" :key="el">
-      <h2 class="accordion-header" id="headingOne">
+  <div class="accordion" id="accordionExample" >
+    <div class="accordion-item" v-for="el in QAs" :key="el" >
+      <h2 class="accordion-header" :id="'heading-' + el.id">
         <button
-          class="accordion-button"
+          class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
-          :data-bs-target="'#collapseOne' + el.id"
+          :data-bs-target="'#collapse-' + el.id"
           aria-expanded="false"
-          v-bind:aria-controls="'collapseOne' + el.id"
+          v-bind:aria-controls="'collapse-' + el.id"
         >
           {{ el.q }}
         </button>
       </h2>
       <div
-        :id="'collapseOne' + el.id"
+        :id="'collapse-' + el.id"
         class="accordion-collapse collapse hide"
-        aria-labelledby="headingOne"
+        :aria-labelledby="'heading-' + el.id"
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
@@ -34,9 +34,6 @@
       </div>
     </div>
   </div>
-
-
-  
 
   <div class="bottomLine"></div>
 </template>
@@ -68,7 +65,7 @@ export default {
     this.allQAs = getAllQAs();
   },
   mounted() {
-    console.log("mounted");
+
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
@@ -95,7 +92,6 @@ export default {
         html: true,
       });
     });
-    // change style
     var glossaryEntries = [].slice.call(
       document.querySelectorAll('[id^="gloss-"]')
     );
@@ -132,7 +128,7 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
-          console.log(answer)
+          // console.log(answer)
           if (
             element.answer.length > answer.length ||
             element.attachment != null
@@ -147,6 +143,7 @@ export default {
         });
       }
     },
+
   },
 };
 </script>

@@ -3,6 +3,7 @@
     <div class="articleTitle">{{ title }}</div>
     <div class="fullText" id="fullText"></div>
     <div class="attachment" id="attachments"></div>
+    <canvas></canvas>
   </div>
 </template>
 
@@ -83,19 +84,48 @@ export default {
     this.fulltext = fullText.split("\n");
     // console.log(fullText)
     this.attachment = "";
+    let vm = this;
     if (element.attachment != "" && element.attachment != null) {
       let attachs = element.attachment.split(";");
       for (let att of attachs) {
         // console.log(att.trim())
-        att = att.trim()
+        att = att.trim();
         let extension = att.split(".")[1];
         if (extension == "gif") {
-          // console.log(att);
+          // let div = document.createElement("div")
+          // let url = require("../assets/gifs/" + att)
+          // // let url = "../assets/gifs/" + att
+          // let width = document.getElementById("attachments").offsetWidth
+          // let height = width
+          // console.log(height)
+          // div.setAttribute("style", "width:"+ width + "px;height:"+ height + "px;background-image: url('" + url + "');background-repeat: no-repeat;")
+          // document.getElementById("attachments").appendChild(div);
+
           let img = document.createElement("img");
+          img.setAttribute("id", att);
           img.setAttribute("src", require("../assets/gifs/" + att));
           img.setAttribute("alt", "attach");
-          img.setAttribute("style", "width:75%;height:75%");
+          img.setAttribute("style", "width:50%;height:50%;animation:none;");
+          img.addEventListener("click", function(){ vm.pauseGif(att);});
+          // img.setAttribute("style", "width:100%;height:100%;max-width:500px;max-height:500px");
           document.getElementById("attachments").appendChild(img);
+
+          let zoomButton = document.createElement("button");
+          zoomButton.setAttribute("type", "button");
+          zoomButton.innerHTML = "<i class='bi bi-zoom-in'></i>";
+          // zoomButton.setAttribute("onclick", this.changeSize(), false);
+          // zoomButton.addEventListener("click", () => console.log('fff'))
+          zoomButton.addEventListener("click", function () {
+            img.style.width = parseInt(img.style.width) * 1.1 + "%";
+          });
+          let unZoomButton = document.createElement("button");
+          unZoomButton.setAttribute("type", "button");
+          unZoomButton.innerHTML = "<i class='bi bi-zoom-out'></i>";
+          unZoomButton.addEventListener("click", function () {
+            img.style.width = parseInt(img.style.width) / 1.1 + "%";
+          });
+          document.getElementById("attachments").appendChild(zoomButton);
+          document.getElementById("attachments").appendChild(unZoomButton);
         }
         if (extension == "jpg") {
           let img = document.createElement("img");
@@ -110,10 +140,25 @@ export default {
           pdfLink.innerHTML = "file";
           document.getElementById("attachments").appendChild(pdfLink);
         }
+        if (extension == "docx") {
+          let pdfLink = document.createElement("a");
+          pdfLink.href = require("../assets/docs/" + att);
+          pdfLink.innerHTML = "file";
+          document.getElementById("attachments").appendChild(pdfLink);
+        }
       }
     }
   },
-  methods: {},
+  methods: {
+    pauseGif(id) {
+      console.log(id)
+      // let img = document.getElementById(id)
+      // let canvas = document.querySelector("canvas");
+      // document.getElementById("attachments").appendChild(canvas);
+      // var ctx = canvas.getContext("2d");
+      // ctx.drawImage(img, 0, 0, 500, 500);
+    },
+  },
 };
 </script>
 
@@ -139,5 +184,25 @@ a[id^="gloss-"] {
   color: red;
   font-style: italic !important;
   font-weight: 100 !important;
+}
+.img-test {
+  width: 300px;
+  height: 300px;
+  background-image: url("../assets/gifs/Render_rayonn_territ_podsudnost.gif");
+  background-repeat: no-repeat;
+}
+* {
+  /*CSS animations*/
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
+  animation: none !important;
+  /*CSS transitions*/
+  transition-property: none !important;
+  /*CSS transforms*/
+  transform: none !important;
+  /*CSS animations*/
+  animation: initial !important;
 }
 </style>

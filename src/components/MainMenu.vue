@@ -118,7 +118,7 @@ a.custom-card:hover {
 }
 .card-link {
   color: #74c7c5;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
 }
 .card-text {
@@ -131,3 +131,7 @@ a.custom-card:hover {
 }
 /* .card-img {} */
 </style>
+
+
+
+// hosting in firebase json    "site": "courtmonitoring-94187",
