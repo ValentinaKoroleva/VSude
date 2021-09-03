@@ -10,7 +10,7 @@
             aria-current="page"
             to="/"
           >
-            <img src="./assets/home.png" alt="home" />
+            <img src="./assets/icons/home.png" alt="home" />
           </router-link>
         </li>
         <li class="nav-item flex-fill">
@@ -21,7 +21,7 @@
           >
             <figure class="figure">
               <img
-                src="./assets/generalq.png"
+                src="./assets/icons/generalq.png"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -37,7 +37,7 @@
           >
             <figure class="figure">
               <img
-                src="./assets/buildingentrance.png"
+                src="./assets/icons/buildingentrance.png"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -52,7 +52,7 @@
           >
             <figure class="figure">
               <img
-                src="./assets/roomentrance.png"
+                src="./assets/icons/roomentrance.png"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -67,7 +67,7 @@
           >
             <figure class="figure">
               <img
-                src="./assets/incourt.png"
+                src="./assets/icons/incourt.png"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />

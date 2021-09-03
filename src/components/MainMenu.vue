@@ -17,7 +17,7 @@
         <div class="card">
           <img
             class="card-img w-100 h-auto"
-            src="../assets/generalqBig.png"
+            src="../assets/icons/generalqBig.png"
             alt="ttt"
           />
           <div
@@ -38,7 +38,7 @@
         <div class="card">
           <img
             class="card-img w-100 h-auto"
-            src="../assets/buildingentranceBig.png"
+            src="../assets/icons/buildingentranceBig.png"
             alt="ttt"
           />
           <div
@@ -59,7 +59,7 @@
         <div class="card">
           <img
             class="card-img w-100 h-auto"
-            src="../assets/roomentranceBig.png"
+            src="../assets/icons/roomentranceBig.png"
             alt="ttt"
           />
           <div
@@ -78,7 +78,7 @@
         <div class="card">
           <img
             class="card-img w-100 h-auto"
-            src="../assets/incourtBig.png"
+            src="../assets/icons/incourtBig.png"
             alt="ttt"
           />
           <div

@@ -15,18 +15,30 @@
       ></button>
     </div>
     <div class="offcanvas-body">
+      <img class="logo" src="../assets/logo.png" alt="logo" />
       <ul class="sideMenuList">
         <li>
-          <img src="../assets/icons/about.svg" alt="about"><a href="/about">Что тут можно узнать</a>
+          <img class="icon" src="../assets/icons/about.svg" alt="about" /><a
+            href="/about"
+            >Что тут можно узнать</a
+          >
         </li>
         <li>
-          <a href="/what-is-court-monitoring">Судебный мониторинг</a>
+          <img
+            class="icon"
+            src="../assets/icons/courtmon.svg"
+            alt="court-monitoring"
+          /><a href="/what-is-court-monitoring">Судебный мониторинг</a>
         </li>
         <li>
-          <a href="/glossary">Глоссарий</a>
+          <i class="bi bi-file-word"></i><a href="/glossary">Глоссарий</a>
         </li>
         <li>
-          <a href="/contacts">Как с нами связаться</a>
+          <img
+            class="icon"
+            src="../assets/icons/contacts.svg"
+            alt="contacts"
+          /><a href="/contacts">Как с нами связаться</a>
         </li>
       </ul>
     </div>
@@ -53,15 +65,26 @@ main {
   overflow-x: auto;
   overflow-y: hidden;
 }
-
+ul {
+  list-style-type: none;
+}
 .bi {
+  font-size: 2rem;
   vertical-align: -0.125em;
   pointer-events: none;
-  fill: currentColor;
+  fill: black;
   min-width: 10em !important;
   min-height: 10em !important;
+  margin: 1%;
+  width: 20em;
 }
-
+.icon {
+  margin: 1%;
+}
+.logo {
+  width: 25%;
+  height: 25%;
+}
 .dropdown-toggle {
   outline: 0;
 }
