@@ -2,7 +2,7 @@
   <div class="article">
     <div class="articleTitle">{{ title }}</div>
     <div class="fullText" id="fullText"></div>
-    <div class="attachment" id="attachments"></div>
+    <div class="attachment d-flex justify-content-start" id="attachments"></div>
     <canvas></canvas>
   </div>
 </template>
@@ -91,6 +91,10 @@ export default {
         // console.log(att.trim())
         att = att.trim();
         let extension = att.split(".")[1];
+        let elementDiv = document.getElementById("attachments");
+        // let elementDiv = document.createElement("div");
+        // elementDiv.setAttribute("style", "display:block");
+
         if (extension == "gif") {
           // let div = document.createElement("div")
           // let url = require("../assets/gifs/" + att)
@@ -105,13 +109,30 @@ export default {
           img.setAttribute("id", att);
           img.setAttribute("src", require("../assets/gifs/" + att));
           img.setAttribute("alt", "attach");
-          img.setAttribute("style", "width:50%;height:50%;animation:none;");
-          img.addEventListener("click", function(){ vm.pauseGif(att);});
+          img.setAttribute(
+            "style",
+            "width:50%;height:50%;animation:none;border-radius:18px"
+          );
+          img.setAttribute("class", "d-flex justify-content-end");
+
+          img.addEventListener("click", function () {
+            vm.pauseGif(att);
+          });
           // img.setAttribute("style", "width:100%;height:100%;max-width:500px;max-height:500px");
-          document.getElementById("attachments").appendChild(img);
+
+          let zoomGroup = document.createElement("div");
+          zoomGroup.setAttribute(
+            "class",
+            "btn-group-vertical btn-group-sm align-self-start"
+          );
 
           let zoomButton = document.createElement("button");
           zoomButton.setAttribute("type", "button");
+          zoomButton.setAttribute(
+            "class",
+            "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+          );
+          // zoomButton.setAttribute("style", "display:block");
           zoomButton.innerHTML = "<i class='bi bi-zoom-in'></i>";
           // zoomButton.setAttribute("onclick", this.changeSize(), false);
           // zoomButton.addEventListener("click", () => console.log('fff'))
@@ -120,38 +141,46 @@ export default {
           });
           let unZoomButton = document.createElement("button");
           unZoomButton.setAttribute("type", "button");
+          unZoomButton.setAttribute(
+            "class",
+            "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+          );
+          // unZoomButton.setAttribute("style", "display:block");
           unZoomButton.innerHTML = "<i class='bi bi-zoom-out'></i>";
           unZoomButton.addEventListener("click", function () {
             img.style.width = parseInt(img.style.width) / 1.1 + "%";
           });
-          document.getElementById("attachments").appendChild(zoomButton);
-          document.getElementById("attachments").appendChild(unZoomButton);
+          zoomGroup.appendChild(zoomButton);
+          zoomGroup.appendChild(unZoomButton);
+          elementDiv.appendChild(zoomGroup);
+          elementDiv.appendChild(img);
         }
         if (extension == "jpg") {
           let img = document.createElement("img");
           img.setAttribute("src", require("../assets/jpgs/" + att));
           img.setAttribute("alt", "attach");
           img.setAttribute("style", "width:100%;height:100%");
-          document.getElementById("attachments").appendChild(img);
+          elementDiv.appendChild(img);
         }
         if (extension == "pdf") {
           let pdfLink = document.createElement("a");
           pdfLink.href = require("../assets/pdfs/" + att);
           pdfLink.innerHTML = "file";
-          document.getElementById("attachments").appendChild(pdfLink);
+          elementDiv.appendChild(pdfLink);
         }
         if (extension == "docx") {
           let pdfLink = document.createElement("a");
           pdfLink.href = require("../assets/docs/" + att);
           pdfLink.innerHTML = "file";
-          document.getElementById("attachments").appendChild(pdfLink);
+          elementDiv.appendChild(pdfLink);
         }
+        // document.getElementById("attachments").appendChild(elementDiv);
       }
     }
   },
   methods: {
     pauseGif(id) {
-      console.log(id)
+      console.log(id);
       // let img = document.getElementById(id)
       // let canvas = document.querySelector("canvas");
       // document.getElementById("attachments").appendChild(canvas);
@@ -176,6 +205,7 @@ p {
 }
 .article {
   padding: 5%;
+  background: white;
 }
 .fullText {
   text-align: left;

@@ -1,8 +1,9 @@
 <template>
   <nav class="navbar ">
     <div class="container-fluid d-flex flex-nowrap">
+    <!-- <div class="container"> -->
       <button
-        class="btn d-flex justify-content-start"
+        class="btn d-flex justify-content-start align-self-start"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasLeft"
@@ -28,7 +29,7 @@
         <div>
           <ul id="data" v-if="searchInProgress.length > 0">
             <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
-              <a :href="'/article/question?id=' + item.id">{{ item.q }}</a>
+              <a class="question" :href="'/article/question?id=' + item.id">{{ item.q }}</a>
             </li>
           </ul>
         </div>
@@ -94,11 +95,25 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+  width:100%;
+  margin: 0!important;
+  padding: 0!important;
+}
 form {
   width: 100%;
   border-radius: 18px;
-  margin: 1%;
+  margin: 1vh;
+}
+ul {
+  width:90%;
+  border-radius: 18px!important;
+  padding: 2vh!important;
+  position:absolute;
+  z-index: 999;
+}
+.question {
+text-decoration: none ;
 }
 .custom-search {
   /* color: #b1b1b7; */

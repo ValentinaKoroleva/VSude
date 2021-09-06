@@ -31,7 +31,12 @@
           /><a href="/what-is-court-monitoring">Судебный мониторинг</a>
         </li>
         <li>
-          <i class="bi bi-file-word"></i><a href="/glossary">Глоссарий</a>
+          <img
+            class="icon"
+            src="../assets/icons/translate.svg"
+            alt="glossary"
+          />
+          <a href="/glossary">Глоссарий</a>
         </li>
         <li>
           <img
@@ -68,22 +73,20 @@ main {
 ul {
   list-style-type: none;
 }
-.bi {
-  font-size: 2rem;
-  vertical-align: -0.125em;
-  pointer-events: none;
-  fill: black;
-  min-width: 10em !important;
-  min-height: 10em !important;
-  margin: 1%;
-  width: 20em;
+
+a {
+  text-decoration: none;
+  color: #56576a;
+  margin: 5%;
 }
 .icon {
   margin: 1%;
+  width: calc(1.5em + 2vw);
+  height: calc(1.5em + 2vw);
 }
 .logo {
-  width: 25%;
-  height: 25%;
+  width: 11em;
+  height: 10em;
 }
 .dropdown-toggle {
   outline: 0;

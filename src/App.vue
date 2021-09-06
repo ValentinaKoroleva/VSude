@@ -5,11 +5,7 @@
     <div class="container-fluid d-flex flex-nowrap">
       <ul class="navbar-nav d-flex flex-fill">
         <li class="nav-item flex-fill">
-          <router-link
-            class="nav-link"
-            aria-current="page"
-            to="/"
-          >
+          <router-link class="nav-link" aria-current="page" to="/">
             <img src="./assets/icons/home.png" alt="home" />
           </router-link>
         </li>
@@ -31,10 +27,7 @@
           </router-link>
         </li>
         <li class="nav-item flex-fill">
-          <router-link
-            class="nav-link"
-            to="/questionList/entrance"
-          >
+          <router-link class="nav-link" to="/questionList/entrance">
             <figure class="figure">
               <img
                 src="./assets/icons/buildingentrance.png"
@@ -46,10 +39,7 @@
           </router-link>
         </li>
         <li class="nav-item flex-fill">
-          <router-link
-            class="nav-link"
-            to="/questionList/before"
-          >
+          <router-link class="nav-link" to="/questionList/before">
             <figure class="figure">
               <img
                 src="./assets/icons/roomentrance.png"
@@ -61,10 +51,7 @@
           </router-link>
         </li>
         <li class="nav-item flex-fill">
-          <router-link
-            class="nav-link"
-            to="/questionList/incourt"
-          >
+          <router-link class="nav-link" to="/questionList/incourt">
             <figure class="figure">
               <img
                 src="./assets/icons/incourt.png"
@@ -93,6 +80,7 @@ export default {
     Search,
     SideMenu,
   },
+
 };
 </script>
 
@@ -128,11 +116,14 @@ body {
 }
 
 img {
-  width: 2em;
-  height: 2em;
+  /* width: 2em;
+  height: 2em; */
+  width: calc(1em + 2vw);
+  height: calc(1em + 2vw);
 }
 figcaption {
-  font-size: 0.75rem;
+  /* font-size: 0.75rem; */
+  font-size: calc(0.5em + 0.75vw);
 }
 #general {
   /* background-image: url("./assets/generalq.png"); */

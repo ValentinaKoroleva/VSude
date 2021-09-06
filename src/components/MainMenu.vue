@@ -118,7 +118,8 @@ a.custom-card:hover {
 }
 .card-link {
   color: #74c7c5;
-  font-size: 1rem;
+  font-size: calc(0.5em + 1.45vw);
+  /* font-size: 200%; */
   text-decoration: none;
 }
 .card-text {

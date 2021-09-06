@@ -160,22 +160,24 @@ pre {
   height: 10%;
 }
 .accordion-item {
-  background: #e9f7f9;
+  background: white;
+  width:90%;
+  margin:2vh;
   border: none;
-  /* border-radius: 18px; */
+  border-radius: 18px!important;
 }
 .accordion-header {
-  margin: 1%;
+  margin: 2vh;
 }
 .accordion-button {
   background: #ffffff;
-  border-radius: 18px !important;
+  /* border-radius: 18px !important; */
 }
 .accordion-body {
   background: #ffffff;
-  margin: 1%;
+  margin: 2vh;
 
-  border-radius: 18px !important;
+  /* border-radius: 18px !important; */
 }
 .headingOne {
   background: #ffffff;
