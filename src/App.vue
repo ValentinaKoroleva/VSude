@@ -1,12 +1,19 @@
 <template>
   <search />
-  <side-menu v-if="true" />
+  <side-menu />
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
     <div class="container-fluid d-flex flex-nowrap">
       <ul class="navbar-nav d-flex flex-fill">
         <li class="nav-item flex-fill">
           <router-link class="nav-link" aria-current="page" to="/">
-            <img src="./assets/icons/home.png" alt="home" />
+            <figure class="figure">
+              <img
+                :src="icons.home.active"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <figcaption>Главная</figcaption>
+            </figure>
           </router-link>
         </li>
         <li class="nav-item flex-fill">
@@ -17,7 +24,7 @@
           >
             <figure class="figure">
               <img
-                src="./assets/icons/generalq.png"
+                :src="icons.general.passive"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -30,7 +37,7 @@
           <router-link class="nav-link" to="/questionList/entrance">
             <figure class="figure">
               <img
-                src="./assets/icons/buildingentrance.png"
+                :src="icons.courtEntrance.passive"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -42,7 +49,7 @@
           <router-link class="nav-link" to="/questionList/before">
             <figure class="figure">
               <img
-                src="./assets/icons/roomentrance.png"
+                :src="icons.roomEntrance.passive"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -54,7 +61,7 @@
           <router-link class="nav-link" to="/questionList/incourt">
             <figure class="figure">
               <img
-                src="./assets/icons/incourt.png"
+                :src="icons.inCourt.passive"
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
@@ -80,7 +87,53 @@ export default {
     Search,
     SideMenu,
   },
+  data() {
+    return {
+      topMenuShow: true,
+      icons: {
+        home: {
+          active: require("./assets/icons/home.png"),
+          passive: require("./assets/icons/home.png"),
+        },
+        general: {
+          active: require("./assets/icons/generalq-active.png"),
+          passive: require("./assets/icons/generalq.png"),
+        },
+        courtEntrance: {
+          active: require("./assets/icons/buildingentrance-active.png"),
+          passive: require("./assets/icons/buildingentrance.png"),
+        },
+        roomEntrance: {
+          active: require("./assets/icons/roomentrance-active.png"),
+          passive: require("./assets/icons/roomentrance.png"),
+        },
+        inCourt: {
+          active: require("./assets/icons/incourt-active.png"),
+          passive: require("./assets/icons/incourt.png"),
+        },
+      },
+    };
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      console.log(from);
+      let menuTo;
+      let menuFrom;
+      let imgTo = document
+        .querySelector("[href='" + to.href + "']")
+        .querySelector("img");
+      let imgFrom = document
+        .querySelector("[href='" + from.href + "']")
+        .querySelector("img");
+      // imgTo.src = 
+      // imgFrom.src = 
 
+      if (to.fullPath.match(/article/gi)) {
+        this.topMenuShow = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -111,9 +164,9 @@ body {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+/* #nav a.router-link-exact-active {
+  fill: #42b983!important;
+} */
 
 img {
   /* width: 2em;

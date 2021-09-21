@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar ">
+  <nav class="navbar">
     <div class="container-fluid d-flex flex-nowrap">
     <!-- <div class="container"> -->
       <button
@@ -11,7 +11,7 @@
       >
         <i class="bi bi-list"></i>
       </button>
-      <form class="d-flex flex-column ">
+      <form class="d-flex flex-column">
         <div class="d-flex flex-row  d-flex justify-content-start">
           <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
           <input
