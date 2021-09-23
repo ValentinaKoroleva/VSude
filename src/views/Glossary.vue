@@ -1,9 +1,9 @@
 <template>
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in gloss" :key="el">
-      <h2 class="accordion-header" id="headingOne">
+      <h2 class="accordion-header" :id="'heading-' + el.id">
         <button
-          class="accordion-button"
+          class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapseOne' + el.id"
@@ -16,7 +16,7 @@
       <div
         :id="'collapseOne' + el.id"
         class="accordion-collapse collapse hide"
-        aria-labelledby="headingOne"
+        :aria-labelledby="'heading-' + el.id" 
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
@@ -46,14 +46,14 @@ export default {
     };
   },
   created() {
-      csv.forEach((element) => {
-        this.gloss.push({
-          id: element.id,
-          term: element.term,
-          short: element.short,
-          long: element.long,
-        });
+    csv.forEach((element) => {
+      this.gloss.push({
+        id: element.id,
+        term: element.term,
+        short: element.short,
+        long: element.long,
       });
+    });
   },
   methods: {},
 };
@@ -70,20 +70,32 @@ pre {
 .bottomLine {
   height: 10%;
 }
+
 .accordion-item {
-  background: #e9f7f9;
+  background: white;
+  width: 90%;
+  margin: 2vh;
+  border: none;
+  border-radius: 18px !important;
 }
 .accordion-header {
-  margin: 1%;
+  margin: 2vh;
 }
 .accordion-button {
   background: #ffffff;
+}
+.accordion-body {
+  background: #ffffff;
+  margin: 2vh;
 }
 .headingOne {
   background: #ffffff;
   border-radius: 18px;
 }
 p {
+  text-align: left;
+}
+.answer {
   text-align: left;
 }
 </style>

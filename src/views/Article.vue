@@ -177,22 +177,26 @@ export default {
 </script>
 
 <style scoped>
+
 .articleTitle {
-  font-family: SF Pro Text;
   font-style: normal;
   font-weight: normal;
-  font-size: 17px;
-  line-height: 22px;
+  font-size: 1.25rem;
+  line-height: 5em;
   text-align: left;
+  margin-bottom: 5vh;
+  text-decoration-style: solid!important;
 }
 p {
   text-align: left;
 }
 .article {
+  font-family: SF Pro Text;
   padding: 5%;
   background: white;
   z-index: 999;
   height: 100%;
+  border-radius: 18px;
 }
 .fullText {
   text-align: left;

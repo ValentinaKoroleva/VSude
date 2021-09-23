@@ -17,11 +17,7 @@
           </router-link>
         </li>
         <li class="nav-item flex-fill">
-          <router-link
-            id="general"
-            class="nav-link"
-            to="/questionList/generalquestions"
-          >
+          <router-link class="nav-link" to="/questionList/generalquestions">
             <figure class="figure">
               <img
                 :src="icons.general.passive"
@@ -112,22 +108,36 @@ export default {
           passive: require("./assets/icons/incourt.png"),
         },
       },
+      href2icon: {
+        "/": "home",
+        "/questionList/generalquestions": "general",
+        "/questionList/entrance": "courtEntrance",
+        "/questionList/before": "roomEntrance",
+        "/questionList/incourt": "inCourt",
+      },
     };
   },
   watch: {
-    $route(to, from) {
-      console.log(to);
-      console.log(from);
-      let menuTo;
-      let menuFrom;
-      let imgTo = document
-        .querySelector("[href='" + to.href + "']")
-        .querySelector("img");
-      let imgFrom = document
-        .querySelector("[href='" + from.href + "']")
-        .querySelector("img");
-      // imgTo.src = 
-      // imgFrom.src = 
+    $route(to) {
+      if (this.href2icon[to.href] != undefined) {
+        let captionTo = document
+          .querySelector("[href='" + to.href + "']")
+          .querySelector("figcaption");
+
+        let hrefOthers = document.querySelectorAll(".nav-link");
+        let vm = this;
+        hrefOthers.forEach((element) => {
+          let h = element.getAttribute("href");
+          let caption = element.querySelector("figcaption");
+          element.querySelector("img").src = vm.icons[vm.href2icon[h]].passive;
+          caption.style.color = "#BABABE";
+        });
+        let imgTo = document
+          .querySelector("[href='" + to.href + "']")
+          .querySelector("img");
+        imgTo.src = this.icons[this.href2icon[to.href]].active;
+        captionTo.style.color = "#74C7C5";
+      }
 
       if (to.fullPath.match(/article/gi)) {
         this.topMenuShow = false;
@@ -144,9 +154,11 @@ body {
   margin: 0;
   height: 100%;
   background: #e9f7f9;
+  font-family: SF Pro Text;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: SF Pro Text;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -178,9 +190,7 @@ figcaption {
   /* font-size: 0.75rem; */
   font-size: calc(0.5em + 0.75vw);
 }
-#general {
-  /* background-image: url("./assets/generalq.png"); */
-}
+
 .bottomLine {
   height: 20%;
 }

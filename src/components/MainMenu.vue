@@ -28,7 +28,9 @@
               card-img-overlay
             "
           >
-            <a href="/questionList/generalquestions" class="card-link stretched-link"
+            <a
+              href="/questionList/generalquestions"
+              class="card-link stretched-link"
               >Общие вопросы</a
             >
           </div>
@@ -49,7 +51,9 @@
               card-img-overlay
             "
           >
-            <a href="/questionList/entrance" class="card-link stretched-link">Вход в суд</a>
+            <a href="/questionList/entrance" class="card-link stretched-link"
+              >Вход в суд</a
+            >
           </div>
         </div>
       </div>
@@ -70,7 +74,9 @@
               card-img-overlay
             "
           >
-            <a href="/questionList/before" class="card-link stretched-link">Вход в зал</a>
+            <a href="/questionList/before" class="card-link stretched-link"
+              >Вход в зал</a
+            >
           </div>
         </div>
       </div>
@@ -89,7 +95,9 @@
               card-img-overlay
             "
           >
-            <a href="/questionList/incourt" class="card-link stretched-link">В зале суда</a>
+            <a href="/questionList/incourt" class="card-link stretched-link"
+              >В зале суда</a
+            >
           </div>
         </div>
       </div>
@@ -109,8 +117,6 @@
   border-radius: 18px;
   margin: 2%;
 }
-.card-body {
-}
 
 a.custom-card,
 a.custom-card:hover {
@@ -118,17 +124,18 @@ a.custom-card:hover {
 }
 .card-link {
   color: #74c7c5;
-  font-size: calc(0.5em + 1.45vw);
+  font-size: calc(0.3em + 2vw);
+  /* font-size: 1em; */
   /* font-size: 200%; */
   text-decoration: none;
 }
 .card-text {
-    font-size: 1.15rem;
-
+  font-size: 1.15rem;
 }
 .card-img-overlay {
   /* background: #ffffff; */
   border-radius: 18px;
+  height: calc(90% + 3vh);
 }
 /* .card-img {} */
 </style>
