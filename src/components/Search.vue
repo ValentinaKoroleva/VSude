@@ -119,7 +119,7 @@ text-decoration: none ;
   /* color: #b1b1b7; */
   /* background: #ece9e9; */
   /* border: #474747; */
-  width:90%;
+  width:98%;
   border-radius: 18px;
 }
 /* .custom-search:hover {

@@ -13,7 +13,12 @@
 
 import { useRoute } from "vue-router";
 import { Popover } from "bootstrap";
-import { processText, getGlossary, getAllQAs } from "../service/processCSV";
+import {
+  processText,
+  getGlossary,
+  getAllQAs,
+  getAttachments,
+} from "../service/processCSV";
 export default {
   data() {
     return {
@@ -23,12 +28,14 @@ export default {
       route: Object,
       glossary: [],
       allQAs: [],
+      question2attachment: [],
     };
   },
   props: ["id"],
   created() {
     this.glossary = getGlossary();
     this.allQAs = getAllQAs();
+    this.question2attachment = getAttachments();
   },
   mounted() {
     const route = useRoute();
@@ -95,111 +102,129 @@ export default {
     },
     addAttachment(element) {
       this.attachment = "";
-      let vm = this;
-      if (element.attachment != "" && element.attachment != null) {
-        let attachs = element.attachment.split(";");
-        for (let att of attachs) {
-          att = att.trim();
-          let extension = att.split(".")[1];
-          let elementDiv = document.getElementById("attachments");
+      let attachs = this.question2attachment.filter((ob) => {
+        if (ob.qid == element.id) {
+          return ob;
+        }
+      });
+      for (let ob of attachs) {
+        let att = ob.attachment.trim();
+        let extension = att.split(".")[1];
+        let elementDiv = document.getElementById("attachments");
 
-          if (extension == "gif") {
-            let img = document.createElement("img");
-            img.setAttribute("id", att);
-            img.setAttribute("src", require("../assets/gifs/" + att));
-            img.setAttribute("alt", "attach");
-            img.setAttribute(
-              "style",
-              "width:50%;height:50%;animation:none;border-radius:18px"
-            );
-            img.setAttribute("class", "d-flex justify-content-end");
-
-            img.addEventListener("click", function () {
-              vm.pauseGif(att);
-            });
-
-            let zoomGroup = document.createElement("div");
-            zoomGroup.setAttribute(
-              "class",
-              "btn-group-vertical btn-group-sm align-self-start"
-            );
-
-            let zoomButton = document.createElement("button");
-            zoomButton.setAttribute("type", "button");
-            zoomButton.setAttribute(
-              "class",
-              "btn btn-outline-dark btn-sm d-flex flex-grow-0"
-            );
-            zoomButton.innerHTML = "<i class='bi bi-zoom-in'></i>";
-
-            zoomButton.addEventListener("click", function () {
-              img.style.width = parseInt(img.style.width) * 1.1 + "%";
-            });
-            let unZoomButton = document.createElement("button");
-            unZoomButton.setAttribute("type", "button");
-            unZoomButton.setAttribute(
-              "class",
-              "btn btn-outline-dark btn-sm d-flex flex-grow-0"
-            );
-            unZoomButton.innerHTML = "<i class='bi bi-zoom-out'></i>";
-            unZoomButton.addEventListener("click", function () {
-              img.style.width = parseInt(img.style.width) / 1.1 + "%";
-            });
-            zoomGroup.appendChild(zoomButton);
-            zoomGroup.appendChild(unZoomButton);
-            elementDiv.appendChild(zoomGroup);
-            elementDiv.appendChild(img);
-          }
-          if (extension == "jpg") {
-            let img = document.createElement("img");
-            img.setAttribute("src", require("../assets/jpgs/" + att));
-            img.setAttribute("alt", "attach");
-            img.setAttribute("style", "width:100%;height:100%");
-            elementDiv.appendChild(img);
-          }
-          if (extension == "pdf") {
-            let pdfLink = document.createElement("a");
-            pdfLink.href = require("../assets/pdfs/" + att);
-            pdfLink.innerHTML = "file";
-            elementDiv.appendChild(pdfLink);
-          }
-          if (extension == "docx") {
-            let pdfLink = document.createElement("a");
-            pdfLink.href = require("../assets/docs/" + att);
-            pdfLink.innerHTML = "file";
-            elementDiv.appendChild(pdfLink);
-          }
+        if (extension == "gif") {
+          let { zoomGroup, img } = this.addGIF(att);
+          elementDiv.appendChild(zoomGroup);
+          elementDiv.appendChild(img);
+        }
+        if (extension == "jpg") {
+          let img = document.createElement("img");
+          img.setAttribute("src", require("../assets/jpgs/" + att));
+          img.setAttribute("alt", "attach");
+          img.setAttribute("style", "width:100%;height:100%");
+          elementDiv.appendChild(img);
+        }
+        if (extension == "pdf") {
+          let pdfLink = document.createElement("a");
+          pdfLink.setAttribute("class", "docx");
+          pdfLink.href = require("../assets/pdfs/" + att);
+          pdfLink.innerHTML = ob.attachment;
+          elementDiv.appendChild(pdfLink);
+        }
+        if (extension == "docx") {
+          let pdfLink = document.createElement("a");
+          pdfLink.setAttribute('style', 'color: #74C7C5;')
+          pdfLink.href = require("../assets/docs/" + att);
+          pdfLink.innerHTML = ob.attachment;
+          let divDoc = document.createElement("div")
+          divDoc.appendChild(pdfLink)
+          divDoc.setAttribute("class", "docx");
+          divDoc.setAttribute("style", "padding: 2%;border:1px solid #74C7C5; border-radius:18px")
+          elementDiv.appendChild(divDoc);
         }
       }
     },
+    addGIF(att) {
+      let vm = this;
+
+      let img = document.createElement("img");
+      img.setAttribute("id", att);
+      img.setAttribute("src", require("../assets/gifs/" + att));
+      img.setAttribute("alt", "attach");
+      img.setAttribute(
+        "style",
+        "width:50%;height:50%;animation:none;border-radius:18px"
+      );
+      img.setAttribute("class", "d-flex justify-content-end");
+
+      img.addEventListener("click", function () {
+        vm.pauseGif(att);
+      });
+
+      let zoomGroup = document.createElement("div");
+      zoomGroup.setAttribute(
+        "class",
+        "btn-group-vertical btn-group-sm align-self-start"
+      );
+
+      let zoomButton = document.createElement("button");
+      zoomButton.setAttribute("type", "button");
+      zoomButton.setAttribute(
+        "class",
+        "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+      );
+      zoomButton.innerHTML = "<i class='bi bi-zoom-in'></i>";
+
+      zoomButton.addEventListener("click", function () {
+        img.style.width = parseInt(img.style.width) * 1.1 + "%";
+      });
+      let unZoomButton = document.createElement("button");
+      unZoomButton.setAttribute("type", "button");
+      unZoomButton.setAttribute(
+        "class",
+        "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+      );
+      unZoomButton.innerHTML = "<i class='bi bi-zoom-out'></i>";
+      unZoomButton.addEventListener("click", function () {
+        img.style.width = parseInt(img.style.width) / 1.1 + "%";
+      });
+      zoomGroup.appendChild(zoomButton);
+      zoomGroup.appendChild(unZoomButton);
+      return { zoomGroup, img };
+    },
+
   },
 };
 </script>
 
 <style scoped>
-
 .articleTitle {
   font-style: normal;
   font-weight: normal;
   font-size: 1.25rem;
-  line-height: 5em;
+  line-height: 2em;
   text-align: left;
-  margin-bottom: 5vh;
-  text-decoration-style: solid!important;
+  /* margin-bottom: 5vh; */
+  text-decoration-style: solid !important;
 }
 p {
   text-align: left;
 }
 .article {
-  font-family: SF Pro Text;
-  padding: 5%;
+  margin: 4%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   background: white;
   z-index: 999;
-  height: 100%;
+  display: inline-block;
+  height: auto;
   border-radius: 18px;
 }
 .fullText {
   text-align: left;
+  margin: 3%;
 }
 a[id^="gloss-"] {
   color: red;
@@ -212,6 +237,8 @@ a[id^="gloss-"] {
   background-image: url("../assets/gifs/Render_rayonn_territ_podsudnost.gif");
   background-repeat: no-repeat;
 }
+
+
 * {
   /*CSS animations*/
   -webkit-animation: none !important;

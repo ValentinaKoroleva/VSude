@@ -88,7 +88,7 @@ export default {
       topMenuShow: true,
       icons: {
         home: {
-          active: require("./assets/icons/home.png"),
+          active: require("./assets/icons/home-active.png"),
           passive: require("./assets/icons/home.png"),
         },
         general: {

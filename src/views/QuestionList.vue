@@ -1,8 +1,8 @@
 <template>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
 
-  <div class="accordion" id="accordionExample" >
-    <div class="accordion-item" v-for="el in QAs" :key="el" >
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item" v-for="el in QAs" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
         <button
           class="accordion-button collapsed"
@@ -23,7 +23,7 @@
       >
         <div class="accordion-body">
           <div class="answer" v-html="el.a"></div>
-          <p>
+          <p class="moreOn">
             <router-link
               :to="'/article/question?id=' + el.id"
               v-if="moreOn[el.id]"
@@ -42,7 +42,12 @@
 <script>
 import csv from "@/assets/questions.csv";
 import { Popover } from "bootstrap";
-import { processText, getGlossary, getAllQAs } from "../service/processCSV";
+import {
+  processText,
+  getGlossary,
+  getAllQAs,
+  getAttachments,
+} from "../service/processCSV";
 
 export default {
   name: "QuestionList",
@@ -50,6 +55,7 @@ export default {
     return {
       allQAs: [],
       QAs: [],
+      q2attachment: [],
       moreOn: {},
       inconsistency: {
         general: "generalquestions",
@@ -63,9 +69,9 @@ export default {
   created() {
     this.glossary = getGlossary();
     this.allQAs = getAllQAs();
+    this.question2attachment = getAttachments();
   },
   mounted() {
-
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
@@ -106,10 +112,12 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
-          if (
-            element.answer.length > answer.length ||
-            element.attachment != ""
-          ) {
+          let attachs = this.question2attachment.filter((ob) => {
+            if (ob.qid == element.id) {
+              return ob;
+            }
+          });
+          if (element.answer.length > answer.length || attachs.length > 0) {
             this.moreOn[element.id] = true;
           } else {
             this.moreOn[element.id] = false;
@@ -128,11 +136,13 @@ export default {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
           answer = processText(answer);
-          // console.log(answer)
-          if (
-            element.answer.length > answer.length ||
-            element.attachment != null
-          ) {
+          let attachs = this.question2attachment.filter((ob) => {
+            if (ob.qid == element.id) {
+              return ob;
+            }
+          });
+
+          if (element.answer.length > answer.length || attachs.length > 0) {
             this.moreOn[element.id] = true;
           } else {
             this.moreOn[element.id] = false;
@@ -143,7 +153,6 @@ export default {
         });
       }
     },
-
   },
 };
 </script>
@@ -161,10 +170,10 @@ pre {
 }
 .accordion-item {
   background: white;
-  width:90%;
-  margin:2vh;
+  width: 98%;
+  margin: 2vh;
   border: none;
-  border-radius: 18px!important;
+  border-radius: 18px !important;
 }
 .accordion-header {
   margin: 2vh;
@@ -185,6 +194,9 @@ pre {
 }
 p {
   text-align: left;
+}
+.moreOn {
+  text-align: right;
 }
 .answer {
   text-align: left;

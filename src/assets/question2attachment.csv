@@ -5,17 +5,17 @@ question_id|attachment_id|question|attachment
 3|3|Как найти информацию о заседании?|Render_rayonn_poisk_po_familii.gif
 4|4|Где проходят судебные заседания?|Rayonn_sud_info_o_zasedanii.gif
 5|5|Как найти информацию об арестованных?|Kak_naiti_info_ob_arestovannyh_(5_vopros).gif
-6|6|Мне не хватило места в зале суда|Obrashenia_grazhdan.gif
-7|6|Меня не пускают в зал заседания|Obrashenia_grazhdan.gif
-8|6|Сотрудник суда потребовал паспорт|Obrashenia_grazhdan.gif
-9|6|Присутствие на заседании в нерабочее время|Obrashenia_grazhdan.gif
-10|6|Меня удаляют из зала, что делать?|Obrashenia_grazhdan.gif
-11|7|Как найти текст решения?|Zapros_reschenia_suda.docx
-12|8|Приставы не пускают в суд|Zhaloba_na_nedopusk.docx
-13|9|Мне не хватило места в зале суда|Obespechenie_glasnosti.docx
-14|8|Меня не пускают в зал суда|Zhaloba_na_nedopusk.docx
-15|9|Что такое закрытый судебный процесс?|Zhaloba_na_zakrytoe_zasedanie.docx
-8|10|Сотрудник суда потребовал паспорт|Zhaloba_nezakonnaya_proverka_pasporta.docx
-9|11|Присутствие на заседании в нерабочее время|Prosba_na_dopusk.docx
-10|12|Меня удаляют из зала, что делать?|Zhaloba_na_udalenie.docx
-16|7|Можно ли слушателю получить текст решения суда?|Zapros_reschenia_suda.docx
+21|6|Мне не хватило места в зале суда|Obrashenia_grazhdan.gif
+24|6|Меня не пускают в зал заседания|Obrashenia_grazhdan.gif
+26|6|Сотрудник суда потребовал паспорт|Obrashenia_grazhdan.gif
+32|6|Присутствие на заседании в нерабочее время|Obrashenia_grazhdan.gif
+43|6|Меня удаляют из зала, что делать?|Obrashenia_grazhdan.gif
+8|7|Как найти текст решения?|Zapros_reschenia_suda.docx
+16|8|Приставы не пускают в суд|Zhaloba_na_nedopusk.docx
+21|9|Мне не хватило места в зале суда|Obespechenie_glasnosti.docx
+24|8|Меня не пускают в зал суда|Zhaloba_na_nedopusk.docx
+25|9|Что такое закрытый судебный процесс?|Zhaloba_na_zakrytoe_zasedanie.docx
+26|10|Сотрудник суда потребовал паспорт|Zhaloba_nezakonnaya_proverka_pasporta.docx
+32|11|Присутствие на заседании в нерабочее время|Prosba_na_dopusk.docx
+43|12|Меня удаляют из зала, что делать?|Zhaloba_na_udalenie.docx
+45|7|Можно ли слушателю получить текст решения суда?|Zapros_reschenia_suda.docx

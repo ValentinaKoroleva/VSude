@@ -1,9 +1,8 @@
 <template>
   <div class="about">
-    <div class="logo-header">
+    <!-- <div class="logo-header">
       <img src="../assets/logo.png" alt="logo" />
-      <!-- <p><strong>Внутри суда</strong></p> -->
-    </div>
+    </div> -->
     <div class="articleBody">
       <p>
         Рано или поздно мы сталкиваемся с государственными органами, в том числе
@@ -34,12 +33,19 @@ export default {
 </script>
 
 <style scoped>
+.about {
+  padding: 5%;
+  margin: 5%;
+  background: white;
+  z-index: 999;
+  display: inline-block;
+  height: auto;
+  border-radius: 18px;
+}
 p {
   text-align: left;
 }
-.about {
-  padding: 5%;
-}
+
 img {
   width: 10%;
   height: 10%;

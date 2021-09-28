@@ -1,12 +1,12 @@
 import csv from "@/assets/questions.csv";
 import gloss from "@/assets/glossary.csv";
+import attach from "@/assets/question2attachment.csv";
 
 export function processText(text) {
     let glossary = getGlossary()
     let allQAs = getAllQAs()
     let copyAnswer = text;
-    copyAnswer = copyAnswer.replace("\n", "<br>");
-    copyAnswer = copyAnswer.replace("$", "<br>");
+
     const exSiteStringReg = /\(http(\S+)/gi;
     let exSiteStrings = [];
     if (exSiteStringReg.test(text)) {
@@ -80,7 +80,18 @@ export function processText(text) {
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
     });
-
+    // copyAnswer = copyAnswer.replace("\n", "<br>");
+    // copyAnswer = copyAnswer.replace("$", "<br>");
+    let sep = /\n|\$/
+    let paragraphs = copyAnswer.split(sep)
+    // console.log(paragraphs)
+    let span = document.createElement('span')
+    paragraphs.forEach((par) => {
+        let p = document.createElement('p')
+        p.innerHTML = par
+        span.appendChild(p)
+    })
+    copyAnswer = span.outerHTML
     return copyAnswer;
 }
 export function getGlossary() {
@@ -100,14 +111,27 @@ export function getAllQAs() {
     let allQAs = []
     for (let i = 0; i < csv.length; i++) {
         let element = csv[i];
+        
         allQAs[i] = {
             id: element.id,
             q: element.question,
             a: element.answer,
-            attachment: element.attachment
+            attachment: element.attachment,
         };
     }
     return allQAs
+}
+export function getAttachments() {
+    let attachments = []
+    for (let i = 0; i < attach.length; i++) {
+        let element = attach[i];
+        attachments[i] = {
+            id: element.attachment_id,
+            qid: element.question_id,
+            attachment: element.attachment
+        };
+    }
+    return attachments
 }
 
 // export default {processText,  getGlossary, getAllQAs}
