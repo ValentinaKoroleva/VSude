@@ -36,6 +36,7 @@ export default {
 .about {
   padding: 5%;
   margin: 5%;
+  margin-top: 1%;
   background: white;
   z-index: 999;
   display: inline-block;
