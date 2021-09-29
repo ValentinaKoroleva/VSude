@@ -2,7 +2,7 @@
   <div class="article">
     <div class="articleTitle">{{ title }}</div>
     <div class="fullText" id="fullText"></div>
-    <div class="attachment d-flex justify-content-start" id="attachments"></div>
+    <div class="attachment" id="attachments"></div>
     <canvas></canvas>
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {
       // process text
       fullText = element.a;
       copyAnswer = processText(fullText);
+      this.addAttachment(element);
     }
     if (route.params.category == "term") {
       // element = this.glossary[route.query.id];
@@ -88,8 +89,6 @@ export default {
 
     // this.fulltext = element.a.split("\n");
     this.fulltext = fullText.split("\n");
-
-    this.addAttachment(element);
   },
   methods: {
     pauseGif(id) {
@@ -113,9 +112,11 @@ export default {
         let elementDiv = document.getElementById("attachments");
 
         if (extension == "gif") {
-          let { zoomGroup, img } = this.addGIF(att);
-          elementDiv.appendChild(zoomGroup);
-          elementDiv.appendChild(img);
+          // let { zoomGroup, img } = this.addGIF(att);
+          // elementDiv.appendChild(zoomGroup);
+          // elementDiv.appendChild(img);
+          let divGif = this.addGIF(att);
+          elementDiv.appendChild(divGif);
         }
         if (extension == "jpg") {
           let img = document.createElement("img");
@@ -133,19 +134,27 @@ export default {
         }
         if (extension == "docx") {
           let pdfLink = document.createElement("a");
-          pdfLink.setAttribute('style', 'color: #74C7C5;')
+          pdfLink.setAttribute(
+            "style",
+            "color: #74C7C5; text-decoration: none"
+          );
           pdfLink.href = require("../assets/docs/" + att);
           pdfLink.innerHTML = ob.attachment;
-          let divDoc = document.createElement("div")
-          divDoc.appendChild(pdfLink)
+          let divDoc = document.createElement("div");
+          divDoc.appendChild(pdfLink);
           divDoc.setAttribute("class", "docx");
-          divDoc.setAttribute("style", "padding: 2%;border:1px solid #74C7C5; border-radius:18px")
+          divDoc.setAttribute(
+            "style",
+            "margin: 4%; padding-top: 3%; padding-bottom: 3%; border: 1px solid #74C7C5; border-radius:18px; width:calc(20em + 10vw)"
+          );
           elementDiv.appendChild(divDoc);
         }
       }
     },
     addGIF(att) {
       let vm = this;
+      let divGif = document.createElement("div");
+      divGif.setAttribute("class", " row");
 
       let img = document.createElement("img");
       img.setAttribute("id", att);
@@ -155,7 +164,7 @@ export default {
         "style",
         "width:50%;height:50%;animation:none;border-radius:18px"
       );
-      img.setAttribute("class", "d-flex justify-content-end");
+      img.setAttribute("class", "col-xs");
 
       img.addEventListener("click", function () {
         vm.pauseGif(att);
@@ -164,35 +173,40 @@ export default {
       let zoomGroup = document.createElement("div");
       zoomGroup.setAttribute(
         "class",
-        "btn-group-vertical btn-group-sm align-self-start"
+        "btn-group-vertical btn-group-sm align-self-start d-flex flex-grow-0 col"
       );
 
       let zoomButton = document.createElement("button");
       zoomButton.setAttribute("type", "button");
+      zoomButton.setAttribute("class", "btn btn-sm d-flex flex-grow-0");
       zoomButton.setAttribute(
-        "class",
-        "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+        "style",
+        "margin: 4%; padding-top: 3%; padding-bottom: 3%; border: 1px solid #74C7C5; border-radius:18px;"
       );
-      zoomButton.innerHTML = "<i class='bi bi-zoom-in'></i>";
+      zoomButton.innerHTML = "<i class='bi bi-zoom-in' style='color:#74C7C5'></i>";
 
       zoomButton.addEventListener("click", function () {
         img.style.width = parseInt(img.style.width) * 1.1 + "%";
       });
       let unZoomButton = document.createElement("button");
       unZoomButton.setAttribute("type", "button");
+      unZoomButton.setAttribute("class", "btn btn-sm d-flex flex-grow-0");
       unZoomButton.setAttribute(
-        "class",
-        "btn btn-outline-dark btn-sm d-flex flex-grow-0"
+        "style",
+        "margin: 4%; padding-top: 3%; padding-bottom: 3%; border: 1px solid #74C7C5; border-radius:18px;"
       );
-      unZoomButton.innerHTML = "<i class='bi bi-zoom-out'></i>";
+
+      unZoomButton.innerHTML = "<i class='bi bi-zoom-out' style='color:#74C7C5'></i>";
       unZoomButton.addEventListener("click", function () {
         img.style.width = parseInt(img.style.width) / 1.1 + "%";
       });
       zoomGroup.appendChild(zoomButton);
       zoomGroup.appendChild(unZoomButton);
-      return { zoomGroup, img };
+      // return { zoomGroup, img };
+      divGif.appendChild(zoomGroup);
+      divGif.appendChild(img);
+      return divGif;
     },
-
   },
 };
 </script>
@@ -212,6 +226,7 @@ p {
 }
 .article {
   margin: 4%;
+  margin-top: 1%;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 3%;
@@ -237,7 +252,6 @@ a[id^="gloss-"] {
   background-image: url("../assets/gifs/Render_rayonn_territ_podsudnost.gif");
   background-repeat: no-repeat;
 }
-
 
 * {
   /*CSS animations*/

@@ -17,7 +17,7 @@ export function processText(text) {
         let href = el.substr(1);
         href = href.slice(0, -1);
         link.href = href;
-        link.innerHTML = " Пример по ссылке. ";
+        link.innerHTML = " Перечень документов, удостоверяющих личность. ";
         let linkHTML = link.outerHTML;
         copyAnswer = copyAnswer.replace(el, linkHTML);
     });
@@ -67,7 +67,7 @@ export function processText(text) {
         link.setAttribute("tabindex", 0);
         link.setAttribute("id", "gloss-" + id);
         link.setAttribute("data-bs-toggle", "popover");
-        link.setAttribute("data-bs-trigger", "click");
+        link.setAttribute("data-bs-trigger", "focus");
         link.title = term;
         let pop = document.createElement("div");
         pop.setAttribute("class", "popover-body");
