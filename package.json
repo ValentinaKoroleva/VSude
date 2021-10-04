@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run build & node src/app.js",
+    "start": "node src/app.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "main": "index.js",
 
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
