@@ -4,7 +4,7 @@
       <img src="../assets/logo.png" alt="logo" />
     </div> -->
     <div class="articleBody">
-      <p class="articleTitle">Гражданский контроль</p>
+      <p class="articleTitle">Гражданский контроль*</p>
       <p class="contentHeader">
         <i class="bi bi-telephone-fill"></i> Контактный телефон:
       </p>
@@ -12,18 +12,18 @@
         <a href="tel:+78123092669">8 (812) 309-26-69</a>
       </p>
       <p class="contentHeader">
-        <i class="bi bi-envelope-open"></i>Почта для связи:
+        <i class="bi bi-envelope-open"></i> Почта для связи:
       </p>
       <p class="content">
         <a href="mailto:citwatchspb@gmail.com">citwatchspb@gmail.com</a>
       </p>
       <p class="contentHeader">
-        <i class="bi bi-envelope-open-fill"></i>Юридическая служба:
+        <i class="bi bi-envelope-open-fill"></i> Юридическая служба:
       </p>
       <p class="content">
         <a href="mailto:jurist@citwatch.org">jurist@citwatch.org</a>
       </p>
-      <p class="contentHeader"><i class="bi bi-people"></i>Сайт:</p>
+      <p class="contentHeader"><i class="bi bi-people"></i> Сайт:</p>
       <p class="content">
         <a href="https://citwatch.org/">https://citwatch.org/</a>
       </p>
@@ -76,7 +76,7 @@ p {
   background-color:#e9f7f9
 }
 .bi {
-  margin:5%!important;
+  margin:1%!important;
 }
 img {
   width: 10%;
