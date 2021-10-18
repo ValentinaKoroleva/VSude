@@ -12,7 +12,7 @@
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
-              <figcaption>Главная</figcaption>
+              <figcaption style='color:#74C7C5'>Главная</figcaption>
             </figure>
           </router-link>
         </li>
@@ -157,7 +157,8 @@ body {
   font-family: SF Pro Text;
 }
 #app {
-  font-family: SF Pro Text;
+  /* font-family: SF Pro Text; */
+  font-family: Helvetica;
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

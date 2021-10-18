@@ -17,9 +17,9 @@ export function processText(text) {
         let href = el.substr(1);
         href = href.slice(0, -1);
         link.href = href;
-        link.innerHTML = " Перечень документов, удостоверяющих личность. ";
+        link.innerHTML = " Перечень документов, удостоверяющих личность.";
         let linkHTML = link.outerHTML;
-        copyAnswer = copyAnswer.replace(el, linkHTML);
+        copyAnswer = copyAnswer.replace(el, linkHTML + ' ');
     });
 
     const inSiteStringReg = /\(question_\d+\)/gi;
@@ -76,9 +76,9 @@ export function processText(text) {
         pop.append(popText);
         pop.append(linkTerm);
         link.setAttribute("data-bs-content", pop.outerHTML);
-        link.innerHTML = " (" + term + ") ";
+        link.innerHTML = "(" + term + ")";
         let linkHTML = link.outerHTML;
-        copyAnswer = copyAnswer.replace(el, linkHTML);
+        copyAnswer = copyAnswer.replace(el, ' ' + linkHTML);
     });
     // copyAnswer = copyAnswer.replace("\n", "<br>");
     // copyAnswer = copyAnswer.replace("$", "<br>");

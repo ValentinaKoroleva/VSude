@@ -3,19 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node src/app.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.9.3",
     "bootstrap": "^5.0.2",
     "bootstrap-icons": "^1.5.0",
     "core-js": "^3.6.5",
-    "firebase": "^9.1.0",
+    "firebase": "^9.1.1",
     "fs": "0.0.1-security",
     "jquery": "^3.6.0",
     "papaparse": "^5.3.1",

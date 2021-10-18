@@ -42,6 +42,7 @@ export default {
     let element = {};
     let copyAnswer = "";
     let fullText = "";
+    document.getElementById('attachments').innerHTML = ''
     if (route.params.category == "question") {
       // element = csv[route.query.id];
       element = this.allQAs.find((que) => {

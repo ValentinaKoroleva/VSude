@@ -22,12 +22,15 @@ const port = 8080;
 const fs = require('fs')
 const requestListener = function (req, res) {
 	res.writeHead(200, { 'content-type': 'text/html' })
-  	fs.createReadStream('../dist/index.html').pipe(res)
+    
+
+  	fs.createReadStream('dist/index.html').pipe(res)
 
     // res.writeHead(200);
     // res.end("My first server!");
 };
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
+    console.log(fs.createReadStream('../dist/index.html').pipe)
     console.log(`Server is running on http://${host}:${port}`);
 });
