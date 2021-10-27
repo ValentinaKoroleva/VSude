@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.fe7b6b59d8a8ffef22f384d39ad25339.js"
+  "/precache-manifest.f8b1108f749c2bdbaad584a8176f1b46.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "VSude"});
