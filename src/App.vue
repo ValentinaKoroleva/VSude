@@ -12,7 +12,7 @@
                 class="figure-img img-fluid rounded"
                 alt="home"
               />
-              <figcaption style='color:#74C7C5'>Главная</figcaption>
+              <figcaption style="color: #74c7c5">Главная</figcaption>
             </figure>
           </router-link>
         </li>
@@ -137,6 +137,15 @@ export default {
           .querySelector("img");
         imgTo.src = this.icons[this.href2icon[to.href]].active;
         captionTo.style.color = "#74C7C5";
+      } else {
+        let hrefOthers = document.querySelectorAll(".nav-link");
+        let vm = this;
+        hrefOthers.forEach((element) => {
+          let h = element.getAttribute("href");
+          let caption = element.querySelector("figcaption");
+          element.querySelector("img").src = vm.icons[vm.href2icon[h]].passive;
+          caption.style.color = "#BABABE";
+        });
       }
 
       if (to.fullPath.match(/article/gi)) {

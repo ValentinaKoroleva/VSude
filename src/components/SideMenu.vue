@@ -41,6 +41,14 @@
         <li>
           <img
             class="icon"
+            src="../assets/icons/file-earmark-text.svg"
+            alt="glossary"
+          />
+          <a href="/documents">Шаблоны документов</a>
+        </li>
+        <li>
+          <img
+            class="icon"
             src="../assets/icons/contacts.svg"
             alt="contacts"
           /><a href="/contacts">Как с нами связаться</a>
