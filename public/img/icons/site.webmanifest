@@ -1,5 +1,5 @@
 {
-    "name": "VSude",
+    "name": "",
     "short_name": "",
     "icons": [
         {
@@ -12,6 +12,7 @@
             "sizes": "512x512",
             "type": "image/png"
         }
+
     ],
     "theme_color": "#d8d8d8",
     "background_color": "#d8d8d8",

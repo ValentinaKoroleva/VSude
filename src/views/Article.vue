@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <div class="articleTitle">{{ title }}</div>
+    <h1>{{ title }}</h1>
     <div class="fullText" id="fullText"></div>
     <div class="attachment" id="attachments"></div>
     <canvas></canvas>

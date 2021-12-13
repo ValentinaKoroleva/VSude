@@ -1,6 +1,7 @@
 <template>
   <search />
   <side-menu />
+  <a tabindex="0" class="btn btn-custom" role="button" data-bs-toggle="popover" data-bs-trigger="focus"  :data-bs-content="tagTip">Как добавить приложение на главный экран?</a>
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
     <div class="container-fluid d-flex flex-nowrap">
       <ul class="navbar-nav d-flex flex-fill">
@@ -76,6 +77,7 @@
 <script>
 import SideMenu from "./components/SideMenu.vue";
 import Search from "./components/Search.vue";
+import { Popover } from "bootstrap";
 
 export default {
   // name:'App',
@@ -115,6 +117,7 @@ export default {
         "/questionList/before": "roomEntrance",
         "/questionList/incourt": "inCourt",
       },
+      tagTip: "And here's some amazing content"
     };
   },
   watch: {
@@ -147,12 +150,25 @@ export default {
           caption.style.color = "#BABABE";
         });
       }
-
       if (to.fullPath.match(/article/gi)) {
         this.topMenuShow = false;
       }
+      document.title = to.meta.title || 'Внутри суда'
     },
   },
+  mounted(){
+    // enable popover
+    var popoverTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="popover"]')
+    );
+    popoverTriggerList.map(function (popoverTriggerEl) {
+      return new Popover(popoverTriggerEl, {
+        container: "body",
+        html: true,
+      });
+    });
+    this.tagTip = "Все зависит от того, какое устройство и какой браузер Вы используете. <br> Общая идея найти в меню пункт 'Добавить на главный экран'. Android Yandex Browser Меню по трем точкам"
+  }
 };
 </script>
 
@@ -203,6 +219,16 @@ figcaption {
 
 .bottomLine {
   height: 20%;
+}
+
+.btn-custom {
+  width: 100%;
+  background-color:#84C3BE !important;
+  color: white !important;
+  margin: 1%
+}
+.btn-custom:focus {
+  box-shadow: none!important;
 }
 /* #BABABE */
 /* hsl(240, 3%, 74%) */
