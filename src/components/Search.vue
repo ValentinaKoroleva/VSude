@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div class="container-fluid d-flex flex-nowrap">
-    <!-- <div class="container"> -->
+      <!-- <div class="container"> -->
       <button
         class="btn d-flex justify-content-start align-self-start"
         type="button"
@@ -12,10 +12,10 @@
         <i class="bi bi-list"></i>
       </button>
       <form class="d-flex flex-column">
-        <div class="d-flex flex-row  d-flex justify-content-start">
+        <div class="d-flex flex-row d-flex justify-content-start">
           <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
           <input
-            class="form-control me-2 custom-search "
+            class="form-control me-2 custom-search"
             type="text"
             placeholder="Поиск"
             aria-label="Поиск"
@@ -29,11 +29,22 @@
         <div>
           <ul id="data" v-if="searchInProgress.length > 0">
             <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
-              <a class="question" :href="'/article/question?id=' + item.id">{{ item.q }}</a>
+              <a class="question" :href="'/article/question?id=' + item.id">{{
+                item.q
+              }}</a>
             </li>
           </ul>
         </div>
       </form>
+      <a
+        tabindex="0"
+        class="btn d-flex justify-content-start align-self-start"
+        role="button"
+        data-bs-toggle="popover"
+        data-bs-trigger="focus"
+        :data-bs-content="tagTip"
+        ><i class="bi bi-lightbulb"></i
+      ></a>
     </div>
   </nav>
 </template>
@@ -41,6 +52,8 @@
 <script>
 import csv from "@/assets/questions.csv";
 import router from "../router";
+import { Popover } from "bootstrap";
+
 export default {
   data() {
     return {
@@ -48,18 +61,31 @@ export default {
       QAs: [],
       messageResult: "Ничего не найдено",
       list: [],
+      tagTip: 'Info'
     };
   },
   mounted() {
     let listener = () => {
       this.searchString = "";
-    }
+    };
     document.addEventListener("click", listener);
-    document.querySelector('input').removeEventListener('click', listener)
+    document.querySelector("input").removeEventListener("click", listener);
     for (let i = 0; i < csv.length; i++) {
       let element = csv[i];
       this.list[i] = { id: element.id, q: element.question, a: element.answer };
     }
+    // enable popover
+    var popoverTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="popover"]')
+    );
+    popoverTriggerList.map(function (popoverTriggerEl) {
+      return new Popover(popoverTriggerEl, {
+        container: "body",
+        html: true,
+      });
+    });
+    this.tagTip =
+      "Все зависит от того, какое устройство и какой браузер Вы используете. <br> Общая идея найти в меню пункт 'Добавить на главный экран'. Android Yandex Browser Меню по трем точкам";
   },
   computed: {
     searchInProgress() {
@@ -85,20 +111,23 @@ export default {
       router.go(0);
       router.push("/article/question?id=" + id);
     },
-    search(){
+    search() {
       // router.push("/questionList/searched");
-      router.push({path:"/questionList/searched", query: {q: this.searchString}});
-      this.searchString = ''
-    }
+      router.push({
+        path: "/questionList/searched",
+        query: { q: this.searchString },
+      });
+      this.searchString = "";
+    },
   },
 };
 </script>
 
 <style scoped>
 .container {
-  width:100%;
-  margin: 0!important;
-  padding: 0!important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 form {
   width: 100%;
@@ -106,20 +135,20 @@ form {
   margin: 1vh;
 }
 ul {
-  width:90%;
-  border-radius: 18px!important;
-  padding: 2vh!important;
-  position:absolute;
+  width: 90%;
+  border-radius: 18px !important;
+  padding: 2vh !important;
+  position: absolute;
   z-index: 999;
 }
 .question {
-text-decoration: none ;
+  text-decoration: none;
 }
 .custom-search {
   /* color: #b1b1b7; */
   /* background: #ece9e9; */
   /* border: #474747; */
-  width:98%;
+  width: 98%;
   border-radius: 18px;
 }
 /* .custom-search:hover {
@@ -144,6 +173,15 @@ text-decoration: none ;
 }
 .bi {
   font-size: 2em;
+}
+.btn-custom {
+  width: 10%;
+  background-color:#84C3BE !important;
+  color: white !important;
+  margin: 1%
+}
+.btn-custom:focus {
+  box-shadow: none!important;
 }
 /* label {
   width: 90%;

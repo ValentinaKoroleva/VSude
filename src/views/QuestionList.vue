@@ -1,6 +1,6 @@
 <template>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
-
+  <h1>{{title}}</h1>
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in QAs" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
@@ -63,19 +63,28 @@ export default {
         roomentrance: "before",
         incourt: "incourt",
       },
+      russian_titles: {
+        generalquestions: "Общие вопросы",
+        entrance: "Вход в суд",
+        before: "Вход в зал",
+        incourt: "В зале суда",
+      },
       glossary: [],
+      title: ''
     };
   },
   created() {
     this.glossary = getGlossary();
     this.allQAs = getAllQAs();
     this.question2attachment = getAttachments();
+    
   },
   mounted() {
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
     }
+    document.title = this.russian_titles[this.$route.params.category] || 'Внутри суда'
     this.filterQuestions(this.$route.params.category, query);
     this.$watch(
       () => this.$route,
@@ -83,6 +92,7 @@ export default {
         if (r.query.q != undefined) {
           query = r.query.q;
         }
+        document.title = this.russian_titles[r.params.category] || 'Внутри суда'
         this.filterQuestions(r.params.category, query);
       }
     );
@@ -132,6 +142,9 @@ export default {
             });
           }
         });
+        this.title = 'Результаты поиска'
+        document.title = 'Результаты поиска'
+
       } else {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
@@ -148,6 +161,7 @@ export default {
             this.moreOn[element.id] = false;
           }
           if (this.inconsistency[element.type] == category) {
+            this.title = this.russian_titles[category]
             this.QAs.push({ id: element.id, q: element.question, a: answer });
           }
         });

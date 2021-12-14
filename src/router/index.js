@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/questionList/:category',
     name: 'QuestionList',
-    meta: {title: 'Вопросы'},
+    meta: {title: 'Внутри суда'},
     component: () => import(/* webpackChunkName: "about" */ '../views/QuestionList.vue'),
     props: (route) => ({ query: route.query.q })
   },

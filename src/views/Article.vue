@@ -51,6 +51,7 @@ export default {
         }
       });
       this.title = element.q;
+      document.title = element.q;
       // process text
       fullText = element.a;
       copyAnswer = processText(fullText);
@@ -64,6 +65,8 @@ export default {
         }
       });
       this.title = element.term;
+      document.title = element.term;
+
       // process text
       fullText = element.short + "\n" + element.long;
       copyAnswer = processText(fullText);
