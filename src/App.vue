@@ -1,7 +1,7 @@
 <template>
   <search />
   <side-menu />
-  
+
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
     <div class="container-fluid d-flex flex-nowrap">
       <ul class="navbar-nav d-flex flex-fill">
@@ -66,6 +66,24 @@
             </figure>
           </router-link>
         </li>
+        <li class="nav-item flex-fill">
+          <button
+            class="btn d-flex justify-content-start align-self-start"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasLeft"
+            aria-controls="offcanvasLeft"
+          >
+            <figure class="figure">
+              <img
+                :src="icons.more.passive"
+                class="figure-img img-fluid rounded"
+                alt="home"
+              />
+              <figcaption>Еще</figcaption>
+            </figure>
+          </button>
+        </li>
       </ul>
     </div>
     <!-- </div> -->
@@ -77,13 +95,13 @@
 <script>
 import SideMenu from "./components/SideMenu.vue";
 import Search from "./components/Search.vue";
-
 export default {
   // name:'App',
   components: {
     Search,
     SideMenu,
   },
+
   data() {
     return {
       topMenuShow: true,
@@ -107,6 +125,10 @@ export default {
         inCourt: {
           active: require("./assets/icons/incourt-active.png"),
           passive: require("./assets/icons/incourt.png"),
+        },
+        more: {
+          active: require("./assets/icons/three-dots.svg"),
+          passive: require("./assets/icons/three-dots.svg"),
         },
       },
       href2icon: {
@@ -151,9 +173,11 @@ export default {
       if (to.fullPath.match(/article/gi)) {
         this.topMenuShow = false;
       }
-      document.title = to.meta.title || 'Внутри суда'
+
+
+      document.title = to.meta.title || "Внутри суда";
     },
-  }
+  },
 };
 </script>
 
@@ -164,12 +188,10 @@ body {
   margin: 0;
   height: 100%;
   background: #e9f7f9;
-  font-family: SF Pro Text;
+  font-family: Helvetica !important;
+  font-size: calc(12px + 0.5vw) !important;
 }
 #app {
-  /* font-family: SF Pro Text; */
-  font-family: Helvetica;
-  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -205,7 +227,6 @@ figcaption {
 .bottomLine {
   height: 20%;
 }
-
 
 /* #BABABE */
 /* hsl(240, 3%, 74%) */

@@ -85,7 +85,8 @@ ul {
 a {
   text-decoration: none;
   color: #56576a;
-  margin: 5%;
+  margin-left: 5%;
+  font-size: calc(18px);
 }
 .icon {
   margin: 1%;

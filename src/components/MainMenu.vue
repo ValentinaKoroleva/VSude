@@ -102,8 +102,30 @@
         </div>
       </div>
     </div>
+    <div class="row-2 d-flex justify-content-center">
+      <div class="col-10">
+        <div class="card">
+          <div class="article" id="fullText"><pre>{{ description }}</pre></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script>
+import txt from "../assets/main_menu.txt";
+export default {
+  data() {
+    return {
+      description: "",
+    };
+  },
+  mounted() {
+    this.description = txt;
+    
+  },
+};
+</script>
 
 <style scoped>
 .container {
@@ -136,6 +158,29 @@ a.custom-card:hover {
   /* background: #ffffff; */
   border-radius: 18px;
   height: calc(90% + 3vh);
+}
+.article {
+  margin: 4%;
+  margin-top: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: white;
+  z-index: 999;
+  display: inline-block;
+  height: auto;
+  border-radius: 18px;
+}
+.fullText {
+  margin: 3%;
+}
+pre {
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  font-family: inherit;
+  text-align: left;
+
 }
 /* .card-img {} */
 </style>

@@ -1,17 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {title: 'Внутри суда'},
+    meta: {title: 'Внутри суда - Это приложение  отвечает на популярные вопросы о том, с чем может столкнуться рядовой посетитель суда.'},
   },
   {
     path: '/about',
     name: 'About',
-    meta: {title: 'О нас'},
+    meta: {title: 'О нас - Внутри суда'},
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
@@ -31,20 +30,20 @@ const routes = [
   {
     path: '/what-is-court-monitoring',
     name: 'WhatIsCourtMonitoring',
-    meta: {title: 'Судебный мониторинг'},
+    meta: {title: 'Судебный мониторинг - Внутри суда'},
 
     component: () => import(/* webpackChunkName: "about" */ '../views/WhatIsCourtMon.vue'),
   },
   {
     path: '/contacts',
     name: 'Contacts',
-    meta: {title: 'Контакты'},
+    meta: {title: 'Контакты - Внутри суда'},
     component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue'),
   },
   {
     path: '/glossary',
     name: 'Glossary',
-    meta: {title: 'Глоссарий'},
+    meta: {title: 'Глоссарий - Внутри суда'},
     component: () => import(/* webpackChunkName: "about" */ '../views/Glossary.vue'),
     // props: true,
     props: (route) => ({ query: route.query.q })
@@ -52,7 +51,7 @@ const routes = [
   {
     path: '/documents',
     name: 'Documents',
-    meta: {title: 'Шаблоны документов'},
+    meta: {title: 'Шаблоны документов - Внутри суда'},
 
     component: () => import(/* webpackChunkName: "about" */ '../views/Documents.vue'),
   },

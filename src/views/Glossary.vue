@@ -1,4 +1,8 @@
 <template>
+  <teleport to="head">
+    <meta name="description" :content="description" />
+  </teleport>
+  <h1>Глоссарий</h1>
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in gloss" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
@@ -16,7 +20,7 @@
       <div
         :id="'collapseOne' + el.id"
         class="accordion-collapse collapse hide"
-        :aria-labelledby="'heading-' + el.id" 
+        :aria-labelledby="'heading-' + el.id"
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
@@ -43,9 +47,11 @@ export default {
   data() {
     return {
       gloss: [],
+      description: ''
     };
   },
   created() {
+    let description = ''
     csv.forEach((element) => {
       this.gloss.push({
         id: element.id,
@@ -53,7 +59,10 @@ export default {
         short: element.short,
         long: element.long,
       });
+      description = description + element.term + element.short
     });
+    this.description = description.substr(0, 157) + '...'
+
   },
   methods: {},
 };

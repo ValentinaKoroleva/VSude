@@ -31,6 +31,7 @@
     "babel-eslint": "^10.1.0",
     "csv-loader": "^3.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "raw-loader": "^4.0.2"
   }
 }

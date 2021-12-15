@@ -1,10 +1,13 @@
 <template>
+  <teleport to="head">
+    <meta name="description" content="Гражданский контроль Контактный телефон: 8(812)309-26-69 Почта для связи: citwatchspb@gmail.com Юридическая служба:jurist@citwatch.org https://citwatch.org" />
+  </teleport>
   <div class="about d-flex justify-content-center">
     <!-- <div class="logo-header">
       <img src="../assets/logo.png" alt="logo" />
     </div> -->
     <div class="articleBody">
-      <p class="articleTitle">Гражданский контроль*</p>
+      <h1>Гражданский контроль*</h1>
       <p class="contentHeader">
         <i class="bi bi-telephone-fill"></i> Контактный телефон:
       </p>
@@ -28,7 +31,9 @@
         <a href="https://citwatch.org/">https://citwatch.org/</a>
       </p>
       <p class="contentHeader">
-        * 30.12.2014 распоряжением Министерства юстиции РФ СПб ОО "Гражданский контроль" был включен в реестр некоммерческих организаций, «выполняющих функции иностранного агента»
+        * 30.12.2014 распоряжением Министерства юстиции РФ СПб ОО "Гражданский
+        контроль" был включен в реестр некоммерческих организаций, «выполняющих
+        функции иностранного агента»
       </p>
     </div>
   </div>
@@ -48,19 +53,19 @@ p {
   text-decoration-style: solid !important;
 }
 .content {
-    /* align-self:center */
-    /* margin-left: 20% */
+  /* align-self:center */
+  /* margin-left: 20% */
 }
 .contentHeader {
 }
 .articleBody {
-    padding-right: 10%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    padding-left: 10%;
-    border: 1px solid #74C7C5;
-    border-radius: 18px;
-    background-color:white;
+  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 10%;
+  border: 1px solid #74c7c5;
+  border-radius: 18px;
+  background-color: white;
 }
 .about {
   padding: 5%;
@@ -73,10 +78,10 @@ p {
   height: auto;
   border-radius: 18px;
   width: 90%;
-  background-color:#e9f7f9
+  background-color: #e9f7f9;
 }
 .bi {
-  margin:1%!important;
+  margin: 1% !important;
 }
 img {
   width: 10%;

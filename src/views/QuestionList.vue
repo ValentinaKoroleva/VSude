@@ -1,4 +1,7 @@
 <template>
+<teleport to="head">
+      <meta name="description" :content="description" >
+</teleport>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
   <h1>{{title}}</h1>
   <div class="accordion" id="accordionExample">
@@ -25,6 +28,8 @@
           <div class="answer" v-html="el.a"></div>
           <p class="moreOn">
             <router-link
+            class="btn btn-outline-primary"
+              role = 'button'
               :to="'/article/question?id=' + el.id"
               v-if="moreOn[el.id]"
               >Подробнее</router-link
@@ -47,6 +52,7 @@ import {
   getGlossary,
   getAllQAs,
   getAttachments,
+  clean_text,
 } from "../service/processCSV";
 
 export default {
@@ -70,7 +76,8 @@ export default {
         incourt: "В зале суда",
       },
       glossary: [],
-      title: ''
+      title: '',
+      description: ''
     };
   },
   created() {
@@ -84,7 +91,7 @@ export default {
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
     }
-    document.title = this.russian_titles[this.$route.params.category] || 'Внутри суда'
+    document.title = this.russian_titles[this.$route.params.category] + ' - Внутри суда' || 'Внутри суда'
     this.filterQuestions(this.$route.params.category, query);
     this.$watch(
       () => this.$route,
@@ -92,7 +99,7 @@ export default {
         if (r.query.q != undefined) {
           query = r.query.q;
         }
-        document.title = this.russian_titles[r.params.category] || 'Внутри суда'
+        document.title = this.russian_titles[r.params.category] + ' - Внутри суда' || 'Внутри суда'
         this.filterQuestions(r.params.category, query);
       }
     );
@@ -143,7 +150,7 @@ export default {
           }
         });
         this.title = 'Результаты поиска'
-        document.title = 'Результаты поиска'
+        document.title = 'Результаты поиска - Внутри суда'
 
       } else {
         csv.forEach((element) => {
@@ -166,6 +173,8 @@ export default {
           }
         });
       }
+      let description = clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + '...'
+      this.description = description
     },
   },
 };
@@ -198,7 +207,7 @@ pre {
 }
 .accordion-body {
   background: #ffffff;
-  margin: 2vh;
+  /* margin: 2vh; */
 
   /* border-radius: 18px !important; */
 }

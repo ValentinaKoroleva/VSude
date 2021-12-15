@@ -67,6 +67,7 @@ export function processText(text) {
         link.setAttribute("tabindex", 0);
         link.setAttribute("id", "gloss-" + id);
         link.setAttribute("data-bs-toggle", "popover");
+        link.setAttribute("data-bs-placement", "bottom");
         link.setAttribute("data-bs-trigger", "focus");
         link.title = term;
         let pop = document.createElement("div");
@@ -132,6 +133,11 @@ export function getAttachments() {
         };
     }
     return attachments
+}
+export function clean_text(text) {
+    text = text.replace("\n", "")
+    text = text.replace(/<[^>]*>/g, "")
+    return text
 }
 
 // export default {processText,  getGlossary, getAllQAs}

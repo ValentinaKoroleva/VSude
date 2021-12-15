@@ -20,11 +20,16 @@ module.exports = {
       .options({
         name: "assets/pdf/[name].[hash:8].[ext]",
       });
-    config.module
-      .rule("docx")
-      .test(/\.(docx)(\?.*)?$/)
-      .use("file-loader")
-      .loader("file-loader")
+      config.module
+        .rule("docx")
+        .test(/\.(docx)(\?.*)?$/)
+        .use("file-loader")
+        .loader("file-loader");
+      config.module
+        .rule("txt")
+        .test(/\.(txt)(\?.*)?$/)
+        .use("raw-loader")
+        .loader("raw-loader")
 
   },
   pwa: {

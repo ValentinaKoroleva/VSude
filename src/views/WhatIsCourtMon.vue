@@ -1,8 +1,14 @@
 <template>
+  <teleport to="head">
+    <meta name="description" content="В открытом судебном заседании могут присутствовать любые лица, все, кто
+не являются участниками процесса, т. е. слушатели. Прозрачность
+правосудия способствует..." />
+  </teleport>
   <div class="about">
     <!-- <div class="logo-header">
       <img src="../assets/logo.png" alt="logo" />
     </div> -->
+    <h1>Судебный мониторинг</h1>
     <div class="articleBody">
       <p>
         В открытом судебном заседании могут присутствовать любые лица, все, кто

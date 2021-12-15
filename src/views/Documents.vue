@@ -1,16 +1,19 @@
 <template>
+  <teleport to="head">
+    <meta name="description" :content="description" />
+  </teleport>
   <div class="about d-flex justify-content-center">
     <!-- <div class="logo-header">
       <img src="../assets/logo.png" alt="logo" />
     </div> -->
     <div class="articleBody">
-      <p class="articleTitle">Список шаблонов</p>
-      <div  v-for="doc in docs" :key="doc.name">
+      <h1>Список шаблонов</h1>
+      <div v-for="doc in docs" :key="doc.name">
         <p class="contentHeader">
-          <a :href="doc.path">{{doc.name}}</a>
+          <a :href="doc.path">{{ doc.name }}</a>
         </p>
         <p class="content">
-          {{doc.description}}
+          {{ doc.description }}
         </p>
       </div>
     </div>
@@ -23,53 +26,52 @@ export default {
     return {
       docs: [
         {
-            name: "Обращение об обеспечении гласности судебного заседания",
-            filename: "Obespechenie_glasnosti.docx",
-            path: require("../assets/docs/Obespechenie_glasnosti.docx"),
-            description: ""
+          name: "Обращение об обеспечении гласности судебного заседания",
+          filename: "Obespechenie_glasnosti.docx",
+          path: require("../assets/docs/Obespechenie_glasnosti.docx"),
+          description: "",
         },
         {
-            name: "Запрос текста решения суда",
-            filename: "Zapros_reschenia_suda.docx",
-            path: require("../assets/docs/Zapros_reschenia_suda.docx"),
-            description: ""
+          name: "Запрос текста решения суда",
+          filename: "Zapros_reschenia_suda.docx",
+          path: require("../assets/docs/Zapros_reschenia_suda.docx"),
+          description: "",
         },
         {
-            name: "Жалоба в связи с удалением из судебного заседания",
-            filename: "Zhaloba_na_udalenie.docx",
-            path: require("../assets/docs/Zhaloba_na_udalenie.docx"),
-            description: ""
+          name: "Жалоба в связи с удалением из судебного заседания",
+          filename: "Zhaloba_na_udalenie.docx",
+          path: require("../assets/docs/Zhaloba_na_udalenie.docx"),
+          description: "",
         },
         {
-            name: "Жалоба на нарушение прав слушателей (Незаконная проверка паспорта)",
-            filename: "Zhaloba_nezakonnaya_proverka_pasporta.docx",
-            path: require("../assets/docs/Zhaloba_nezakonnaya_proverka_pasporta.docx"),
-            description: ""
+          name: "Жалоба на нарушение прав слушателей (Незаконная проверка паспорта)",
+          filename: "Zhaloba_nezakonnaya_proverka_pasporta.docx",
+          path: require("../assets/docs/Zhaloba_nezakonnaya_proverka_pasporta.docx"),
+          description: "",
         },
         {
-            name: "Запрос на допуск в заседание в качестве слушателя",
-            filename: "Prosba_na_dopusk.docx",
-            path: require("../assets/docs/Prosba_na_dopusk.docx"),
-            description: ""
+          name: "Запрос на допуск в заседание в качестве слушателя",
+          filename: "Prosba_na_dopusk.docx",
+          path: require("../assets/docs/Prosba_na_dopusk.docx"),
+          description: "",
         },
         {
-            name: "Жалоба в связи с недопуском на заседание",
-            filename: "Zhaloba_na_nedopusk.docx",
-            path: require("../assets/docs/Zhaloba_na_nedopusk.docx"),
-            description: ""
+          name: "Жалоба в связи с недопуском на заседание",
+          filename: "Zhaloba_na_nedopusk.docx",
+          path: require("../assets/docs/Zhaloba_na_nedopusk.docx"),
+          description: "",
         },
         {
-            name: "Обращение об обеспечении гласности судебного заседания",
-            filename: "Zhaloba_na_zakrytoe_zasedanie.docx",
-            path: require("../assets/docs/Zhaloba_na_zakrytoe_zasedanie.docx"),
-            description: ""
+          name: "Обращение об обеспечении гласности судебного заседания",
+          filename: "Zhaloba_na_zakrytoe_zasedanie.docx",
+          path: require("../assets/docs/Zhaloba_na_zakrytoe_zasedanie.docx"),
+          description: "",
         },
       ],
+      description: 'Обращение об обеспечении гласности судебного заседания Запрос текста решения суда Жалоба в связи с удалением из судебного заседания Жалоба на нарушение прав ...'
     };
   },
-  //   mounted() {
-
-  //   },
+    
   methods: {},
 };
 </script>

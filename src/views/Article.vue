@@ -1,4 +1,7 @@
 <template>
+<teleport to="head">
+      <meta name="description" :content="description" >
+</teleport>
   <div class="article">
     <h1>{{ title }}</h1>
     <div class="fullText" id="fullText"></div>
@@ -18,6 +21,7 @@ import {
   getGlossary,
   getAllQAs,
   getAttachments,
+  clean_text
 } from "../service/processCSV";
 export default {
   data() {
@@ -29,6 +33,7 @@ export default {
       glossary: [],
       allQAs: [],
       question2attachment: [],
+      description: ''
     };
   },
   props: ["id"],
@@ -51,10 +56,12 @@ export default {
         }
       });
       this.title = element.q;
-      document.title = element.q;
+      document.title = element.q + ' - Внутри суда';
       // process text
       fullText = element.a;
       copyAnswer = processText(fullText);
+      let cleanedText = clean_text(copyAnswer)
+      this.description = cleanedText.substr(0, 157) + "...";
       this.addAttachment(element);
     }
     if (route.params.category == "term") {
@@ -65,11 +72,13 @@ export default {
         }
       });
       this.title = element.term;
-      document.title = element.term;
+      document.title = element.term + ' - Внутри суда';
 
       // process text
       fullText = element.short + "\n" + element.long;
       copyAnswer = processText(fullText);
+      let cleanedText = clean_text(copyAnswer)
+      this.description = cleanedText.substr(0, 157) + "...";
     }
 
     document
