@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+sitemap: https://vsude.org/sitemap.xml

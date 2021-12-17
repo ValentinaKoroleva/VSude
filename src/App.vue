@@ -13,7 +13,7 @@
               <img
                 :src="icons.home.active"
                 class="figure-img img-fluid rounded"
-                alt="home"
+                alt="Main"
               />
               <figcaption style="color: #74c7c5">Главная</figcaption>
             </figure>
@@ -25,7 +25,7 @@
               <img
                 :src="icons.general.passive"
                 class="figure-img img-fluid rounded"
-                alt="home"
+                alt="GeneralQuestions"
               />
               <!-- <img src= "./assets/generalq-active.png" alt="home"/> -->
               <figcaption>Общие вопросы</figcaption>
@@ -38,7 +38,7 @@
               <img
                 :src="icons.courtEntrance.passive"
                 class="figure-img img-fluid rounded"
-                alt="home"
+                alt="Entrance"
               />
               <figcaption>Вход в суд</figcaption>
             </figure>
@@ -50,7 +50,7 @@
               <img
                 :src="icons.roomEntrance.passive"
                 class="figure-img img-fluid rounded"
-                alt="home"
+                alt="Inside"
               />
               <figcaption>Вход в зал</figcaption>
             </figure>
@@ -62,7 +62,7 @@
               <img
                 :src="icons.inCourt.passive"
                 class="figure-img img-fluid rounded"
-                alt="home"
+                alt="InCourtRoom"
               />
               <figcaption>В зале суда</figcaption>
             </figure>

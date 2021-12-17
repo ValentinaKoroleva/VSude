@@ -1,5 +1,37 @@
-
+const SitemapPlugin = require("sitemap-webpack-plugin").default
+const paths = [
+  {
+    path: '/',
+   },
+  {
+    path: '/about',
+  },
+  {
+    path: '/article/:category',
+  },
+  {
+    path: '/questionList/:category',
+   },
+  {
+    path: '/what-is-court-monitoring',
+   },
+  {
+    path: '/contacts',
+  },
+  {
+    path: '/glossary',
+   },
+  {
+    path: '/documents',
+ 
+  },
+]
 module.exports = {
+  configureWebpack:{
+    plugins: [
+      new SitemapPlugin({base: "https://vsude.org", paths: paths})
+    ]
+  },
   chainWebpack: (config) => {
     config.module
       .rule("csv")
