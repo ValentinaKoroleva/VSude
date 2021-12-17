@@ -1,3 +1,4 @@
+
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -76,5 +77,6 @@ module.exports = {
     //   swSrc: 'src/noopServiceWorker.js',
     //   // ...other Workbox options...
     // }
-  }
+  },
+
 };

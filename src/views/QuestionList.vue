@@ -1,9 +1,9 @@
 <template>
-<teleport to="head">
-      <meta name="description" :content="description" >
-</teleport>
+  <teleport to="head">
+    <meta name="description" :content="description" />
+  </teleport>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
-  <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in QAs" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
@@ -28,8 +28,8 @@
           <div class="answer" v-html="el.a"></div>
           <p class="moreOn">
             <router-link
-            class="btn btn-outline-primary"
-              role = 'button'
+              class="btn btn-outline-primary"
+              role="button"
               :to="'/article/question?id=' + el.id"
               v-if="moreOn[el.id]"
               >Подробнее</router-link
@@ -74,33 +74,46 @@ export default {
         entrance: "Вход в суд",
         before: "Вход в зал",
         incourt: "В зале суда",
+        searched: "Результаты поиска",
       },
       glossary: [],
-      title: '',
-      description: ''
+      title: "",
+      description: "",
     };
   },
   created() {
     this.glossary = getGlossary();
     this.allQAs = getAllQAs();
     this.question2attachment = getAttachments();
-    
   },
   mounted() {
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
     }
-    document.title = this.russian_titles[this.$route.params.category] + ' - Внутри суда' || 'Внутри суда'
+    if (this.russian_titles[this.$route.params.category] == undefined) {
+      document.title = "Внутри суда";
+    } else {
+      document.title =
+        this.russian_titles[this.$route.params.category] + " - Внутри суда" ||
+        "Внутри суда";
+    }
     this.filterQuestions(this.$route.params.category, query);
+    let description =
+      clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + "...";
+    this.description = description;
     this.$watch(
       () => this.$route,
       (r) => {
         if (r.query.q != undefined) {
           query = r.query.q;
         }
-        document.title = this.russian_titles[r.params.category] + ' - Внутри суда' || 'Внутри суда'
+        if (r.params.category != undefined){
+        document.title =
+          this.russian_titles[r.params.category] + " - Внутри суда" ||
+          "Внутри суда";
         this.filterQuestions(r.params.category, query);
+        }
       }
     );
   },
@@ -149,9 +162,8 @@ export default {
             });
           }
         });
-        this.title = 'Результаты поиска'
-        document.title = 'Результаты поиска - Внутри суда'
-
+        this.title = "Результаты поиска";
+        document.title = "Результаты поиска - Внутри суда";
       } else {
         csv.forEach((element) => {
           let answer = element.answer.split("$")[0];
@@ -168,13 +180,11 @@ export default {
             this.moreOn[element.id] = false;
           }
           if (this.inconsistency[element.type] == category) {
-            this.title = this.russian_titles[category]
+            this.title = this.russian_titles[category];
             this.QAs.push({ id: element.id, q: element.question, a: answer });
           }
         });
       }
-      let description = clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + '...'
-      this.description = description
     },
   },
 };

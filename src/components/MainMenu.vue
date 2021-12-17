@@ -1,4 +1,7 @@
 <template>
+<teleport to="head">
+      <meta name="description" content="Рано или поздно мы сталкиваемся с судами. Помимо «обязательной» явки в суд, в качестве стороны процесса, вы также можете посетить суд в качестве «слушателя», и узнать каким образом происходит суд…" >
+</teleport>
   <div class="container">
     <div class="row-2 d-flex justify-content-center">
       <div class="col-10">
