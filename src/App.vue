@@ -1,6 +1,4 @@
 <template>
-
-
   <search />
   <side-menu />
 
@@ -68,41 +66,49 @@
           </router-link>
         </li>
         <li class="nav-item flex-fill">
-          <button
-            class="btn d-flex justify-content-start align-self-start"
+          <a
+            class="nav-link"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasLeft"
             aria-controls="offcanvasLeft"
           >
             <figure class="figure">
-              <img
-                :src="icons.more.passive"
-                class="figure-img img-fluid rounded"
-                alt="home"
-              />
-              <figcaption>Еще</figcaption>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="calc(1em + 2vw)"
+                height="calc(1em + 2vw)"
+                style="margin-bottom: 0.5rem; line-height: 1"
+                fill="#BABEBA"
+                class="bi bi-three-dots"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+                />
+              </svg>
+              <figcaption style="d-flex align-self-end">Еще</figcaption>
             </figure>
-          </button>
+          </a>
         </li>
       </ul>
     </div>
   </nav>
   <not-found v-if="notFound"></not-found>
-  <router-view v-else/>
+  <router-view v-else />
   <div class="bottomLine"></div>
 </template>
 
 <script>
 import SideMenu from "./components/SideMenu.vue";
 import Search from "./components/Search.vue";
-import NotFound from './views/NotFound.vue';
+import NotFound from "./views/NotFound.vue";
 export default {
   // name:'App',
   components: {
     Search,
     SideMenu,
-    NotFound
+    NotFound,
   },
   data() {
     return {
@@ -129,10 +135,10 @@ export default {
           active: require("./assets/icons/incourt-active.png"),
           passive: require("./assets/icons/incourt.png"),
         },
-        more: {
-          active: require("./assets/icons/three-dots.svg"),
-          passive: require("./assets/icons/three-dots.svg"),
-        },
+        // more: {
+        // active: require("./assets/icons/three-dots.svg"),
+        // passive: require("./assets/icons/three-dots.svg"),
+        // },
       },
       href2icon: {
         "/": "home",
@@ -149,13 +155,15 @@ export default {
         let captionTo = document
           .querySelector("[href='" + to.href + "']")
           .querySelector("figcaption");
-
         let hrefOthers = document.querySelectorAll(".nav-link");
         let vm = this;
         hrefOthers.forEach((element) => {
           let h = element.getAttribute("href");
           let caption = element.querySelector("figcaption");
-          element.querySelector("img").src = vm.icons[vm.href2icon[h]].passive;
+          if (vm.icons[vm.href2icon[h]] != undefined) {
+            element.querySelector("img").src =
+              vm.icons[vm.href2icon[h]].passive;
+          }
           caption.style.color = "#BABABE";
         });
         let imgTo = document
@@ -169,7 +177,10 @@ export default {
         hrefOthers.forEach((element) => {
           let h = element.getAttribute("href");
           let caption = element.querySelector("figcaption");
-          element.querySelector("img").src = vm.icons[vm.href2icon[h]].passive;
+          if (vm.icons[vm.href2icon[h]] != undefined) {
+            element.querySelector("img").src =
+              vm.icons[vm.href2icon[h]].passive;
+          }
           caption.style.color = "#BABABE";
         });
       }
@@ -177,8 +188,21 @@ export default {
         this.topMenuShow = false;
       }
 
-
       document.title = to.meta.title || "Внутри суда";
+    },
+  },
+  methods: {
+    changeColor() {
+      console.log(document.querySelector(".bi-three-dots"));
+      if (document.querySelector(".bi-three-dots").style.fill != "#BABABE") {
+        document
+          .querySelector(".bi-three-dots")
+          .setAttribute("style", "fill:#BABABE!important");
+      } else {
+        document
+          .querySelector(".bi-three-dots")
+          .setAttribute("style", "fill:#74C4C7!important");
+      }
     },
   },
 };
@@ -212,9 +236,9 @@ body {
   color: #2c3e50;
 }
 
-/* #nav a.router-link-exact-active {
-  fill: #42b983!important;
-} */
+#nav a.active {
+  fill: #42b983 !important;
+}
 
 img {
   /* width: 2em;
