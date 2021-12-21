@@ -125,8 +125,13 @@ export default {
   },
   mounted() {
     this.description = txt;
-    
+    document.title = "Внутри суда";
   },
+  watch: {
+    $route(to) {
+      document.title = to.meta.title || "Внутри суда";
+    }
+  }
 };
 </script>
 

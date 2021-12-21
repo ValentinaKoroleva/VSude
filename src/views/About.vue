@@ -34,6 +34,9 @@ export default {
     return {
       description: ''
     }
+  },
+  mounted(){
+    document.title = 'О нас - Внутри суда'
   }
 };
 </script>

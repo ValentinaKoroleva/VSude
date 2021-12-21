@@ -90,7 +90,7 @@ export default {
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
-    }
+    } 
     if (this.russian_titles[this.$route.params.category] == undefined) {
       document.title = "Внутри суда";
     } else {
@@ -98,10 +98,14 @@ export default {
         this.russian_titles[this.$route.params.category] + " - Внутри суда" ||
         "Внутри суда";
     }
-    this.filterQuestions(this.$route.params.category, query);
-    let description =
+    if (this.$route.params.category != undefined) {
+      this.filterQuestions(this.$route.params.category, query);
+      let description =
       clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + "...";
     this.description = description;
+    }
+    
+    
     this.$watch(
       () => this.$route,
       (r) => {

@@ -27,7 +27,6 @@
                 class="figure-img img-fluid rounded"
                 alt="GeneralQuestions"
               />
-              <!-- <img src= "./assets/generalq-active.png" alt="home"/> -->
               <figcaption>Общие вопросы</figcaption>
             </figure>
           </router-link>
@@ -88,24 +87,26 @@
         </li>
       </ul>
     </div>
-    <!-- </div> -->
   </nav>
-  <router-view />
+  <not-found v-if="notFound"></not-found>
+  <router-view v-else/>
   <div class="bottomLine"></div>
 </template>
 
 <script>
 import SideMenu from "./components/SideMenu.vue";
 import Search from "./components/Search.vue";
+import NotFound from './views/NotFound.vue';
 export default {
   // name:'App',
   components: {
     Search,
     SideMenu,
+    NotFound
   },
-
   data() {
     return {
+      notFound: false,
       topMenuShow: true,
       icons: {
         home: {

@@ -55,6 +55,15 @@ const routes = [
 
     component: () => import(/* webpackChunkName: "about" */ '../views/Documents.vue'),
   },
+  {
+    path: '/404',
+    component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue'),
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/404'
+  },
+
 ]
 
 const router = createRouter({
