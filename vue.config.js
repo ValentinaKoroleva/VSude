@@ -71,7 +71,7 @@ module.exports = {
       icons: [
         {
           src: "./img/icons/apple-icon-120x120.png",
-          sizes: "192x192",
+          sizes: "120x120",
           type: "image/png",
         },
         {
