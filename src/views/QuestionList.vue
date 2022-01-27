@@ -4,6 +4,20 @@
   </teleport>
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
   <h1>{{ title }}</h1>
+
+  <!-- 
+  <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    <h1>{{ title }}</h1>
+  </button>
+
+<div>
+  <div class="collapse" id="collapseWidthExample">
+    <p class="article" style="white-space:pre-wrap;">
+      {{ categoryInfo }}
+    </p>
+  </div>
+</div> -->
+
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in QAs" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
@@ -25,7 +39,7 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <div class="answer" v-html="el.a"></div>
+          <!-- <div class="answer" v-html="el.a"></div>
           <p class="moreOn">
             <router-link
               class="btn btn-outline-primary"
@@ -34,11 +48,33 @@
               v-if="moreOn[el.id]"
               >Подробнее</router-link
             >
-          </p>
+          </p> -->
+          <div class="card">
+            <div class="row">
+              <div class="col-3 align-self-center">
+                <img :src="el.image" alt="visual" />
+              </div>
+              <div class="col">
+                <div class="card-body">
+                  <p class="card-text answer" v-html="el.a"></p>
+                  <p class="moreOn">
+                    <router-link
+                      class="btn btn-outline-primary"
+                      role="button"
+                      :to="'/article/question?id=' + el.id"
+                      v-if="moreOn[el.id]"
+                      >Подробнее</router-link
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <p class="article" style="white-space: pre-wrap">{{ categoryInfo }}</p>
 
   <div class="bottomLine"></div>
 </template>
@@ -46,6 +82,7 @@
 
 <script>
 import csv from "@/assets/questions.csv";
+import categoryInfo from "../assets/categoryInfos.json";
 import { Popover } from "bootstrap";
 import {
   processText,
@@ -78,6 +115,7 @@ export default {
       },
       glossary: [],
       title: "",
+      categoryInfo: "",
       description: "",
     };
   },
@@ -90,7 +128,7 @@ export default {
     let query = "";
     if (this.$route.query.q != undefined) {
       query = this.$route.query.q;
-    } 
+    }
     if (this.russian_titles[this.$route.params.category] == undefined) {
       document.title = "Внутри суда";
     } else {
@@ -101,22 +139,21 @@ export default {
     if (this.$route.params.category != undefined) {
       this.filterQuestions(this.$route.params.category, query);
       let description =
-      clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + "...";
-    this.description = description;
+        clean_text(this.QAs[0].q + this.QAs[0].a).substr(0, 157) + "...";
+      this.description = description;
     }
-    
-    
+
     this.$watch(
       () => this.$route,
       (r) => {
         if (r.query.q != undefined) {
           query = r.query.q;
         }
-        if (r.params.category != undefined){
-        document.title =
-          this.russian_titles[r.params.category] + " - Внутри суда" ||
-          "Внутри суда";
-        this.filterQuestions(r.params.category, query);
+        if (r.params.category != undefined) {
+          document.title =
+            this.russian_titles[r.params.category] + " - Внутри суда" ||
+            "Внутри суда";
+          this.filterQuestions(r.params.category, query);
         }
       }
     );
@@ -163,6 +200,7 @@ export default {
               q: element.question,
               a: answer,
               attachment: element.attachment,
+              image: require("../assets/images/" + element.id + ".svg"),
             });
           }
         });
@@ -185,7 +223,14 @@ export default {
           }
           if (this.inconsistency[element.type] == category) {
             this.title = this.russian_titles[category];
-            this.QAs.push({ id: element.id, q: element.question, a: answer });
+            let textEdited = categoryInfo[category].replace("/n", "<br>");
+            this.categoryInfo = textEdited;
+            this.QAs.push({
+              id: element.id,
+              q: element.question,
+              a: answer,
+              image: require("../assets/images/" + element.id + ".svg"),
+            });
           }
         });
       }
@@ -237,5 +282,28 @@ p {
 }
 .answer {
   text-align: left;
+}
+.card {
+  border: none;
+}
+.article {
+  margin-left: 3em;
+  margin-right: 3em;
+  /* margin-top: 1%; */
+  /* padding-left: 5%; */
+  /* padding-right: 5%; */
+  /*padding-top: 3%; */
+  /*padding-bottom: 3%; */
+  /* background: white; */
+  /* z-index: 999; */
+  /* display: inline-block; */
+  /* height: auto; */
+  /* border-radius: 18px; */
+  text-align: left;
+}
+img {
+  width: calc(5em + 10vw);
+  height: calc(5em + 10vw);
+  padding: 5%;
 }
 </style>

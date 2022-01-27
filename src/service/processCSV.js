@@ -140,4 +140,5 @@ export function clean_text(text) {
     return text
 }
 
+
 // export default {processText,  getGlossary, getAllQAs}

@@ -3,6 +3,7 @@
       <meta name="description" :content="description" >
 </teleport>
   <div class="article">
+    <div class="visual" id="visual"></div>
     <h1>{{ title }}</h1>
     <div class="fullText" id="fullText"></div>
     <div class="attachment" id="attachments"></div>
@@ -113,6 +114,14 @@ export default {
       // ctx.drawImage(img, 0, 0, 500, 500);
     },
     addAttachment(element) {
+      let visual = document.getElementById("visual");
+      if (visual.children.length > 0) {visual.removeChild(visual.children[0])}
+      // console.log(visual.children)
+      let mainImg = document.createElement("img");
+      mainImg.setAttribute("src", require("../assets/images/" + element.id + ".svg"));
+      mainImg.setAttribute("alt", "attach");
+      mainImg.setAttribute("style", "width:100%;height:100%");
+      visual.appendChild(mainImg);
       this.attachment = "";
       let attachs = this.question2attachment.filter((ob) => {
         if (ob.qid == element.id) {
