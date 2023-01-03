@@ -2,15 +2,6 @@
   <nav class="navbar">
     <div class="container-fluid d-flex flex-nowrap">
       <!-- <div class="container"> -->
-      <button
-        class="btn d-flex justify-content-start align-self-start"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasLeft"
-        aria-controls="offcanvasLeft"
-      >
-        <i class="bi bi-list"></i>
-      </button>
       <form class="d-flex flex-column">
         <div class="d-flex flex-row d-flex justify-content-start">
           <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
@@ -61,7 +52,7 @@ export default {
       QAs: [],
       messageResult: "Ничего не найдено",
       list: [],
-      tagTip: 'Info'
+      tagTip: 'Введите интересующий вас вопрос'
     };
   },
   mounted() {

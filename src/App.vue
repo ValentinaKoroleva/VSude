@@ -1,7 +1,8 @@
 <template>
+  <heading />
   <search />
   <side-menu />
-
+  <confirm />
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">
     <div class="container-fluid d-flex flex-nowrap">
       <ul class="navbar-nav d-flex flex-fill">
@@ -76,8 +77,6 @@
             <figure class="figure">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="calc(1em + 2vw)"
-                height="calc(1em + 2vw)"
                 style="margin-bottom: 0.5rem; line-height: 1"
                 fill="#BABEBA"
                 class="bi bi-three-dots"
@@ -103,12 +102,16 @@
 import SideMenu from "./components/SideMenu.vue";
 import Search from "./components/Search.vue";
 import NotFound from "./views/NotFound.vue";
+import Confirm from "./components/Confirm.vue";
+import Heading from "./components/Heading.vue";
 export default {
   // name:'App',
   components: {
     Search,
     SideMenu,
     NotFound,
+    Confirm,
+    Heading,
   },
   data() {
     return {

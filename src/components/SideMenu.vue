@@ -16,44 +16,64 @@
     </div>
     <div class="offcanvas-body">
       <img class="logo" src="../assets/logo.png" alt="logo" />
-      <ul class="sideMenuList">
-        <li>
-          <img class="icon" src="../assets/icons/about.svg" alt="about" /><a
-            href="/about"
-            >Что тут можно узнать</a
-          >
-        </li>
-        <li>
-          <img
-            class="icon"
-            src="../assets/icons/courtmon.svg"
-            alt="court-monitoring"
-          /><a href="/what-is-court-monitoring">Судебный мониторинг</a>
-        </li>
-        <li>
-          <img
-            class="icon"
-            src="../assets/icons/translate.svg"
-            alt="glossary"
-          />
-          <a href="/glossary">Глоссарий</a>
-        </li>
-        <li>
-          <img
-            class="icon"
-            src="../assets/icons/file-earmark-text.svg"
-            alt="glossary"
-          />
-          <a href="/documents">Шаблоны документов</a>
-        </li>
-        <li>
-          <img
-            class="icon"
-            src="../assets/icons/contacts.svg"
-            alt="contacts"
-          /><a href="/contacts">Как с нами связаться</a>
-        </li>
-      </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            <img class="icon" src="../assets/icons/about.svg" alt="about" />
+          </div>
+          <div class="col-8 ">
+            <a href="/about">Что тут можно узнать</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <img
+              class="icon"
+              src="../assets/icons/courtmon.svg"
+              alt="court-monitoring"
+            />
+          </div>
+          <div class="col-8">
+            <a href="/what-is-court-monitoring">Судебный мониторинг</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <img
+              class="icon"
+              src="../assets/icons/translate.svg"
+              alt="glossary"
+            />
+          </div>
+          <div class="col-8 ">
+            <a href="/glossary">Глоссарий</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <img
+              class="icon"
+              src="../assets/icons/file-earmark-text.svg"
+              alt="glossary"
+            />
+          </div>
+          <div class="col-8 ">
+            <a href="/documents">Шаблоны документов</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <img
+              class="icon"
+              src="../assets/icons/contacts.svg"
+              alt="contacts"
+            />
+          </div>
+          <div class="col-8 ">
+            <a href="/contacts">Как с нами связаться</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -85,27 +105,23 @@ ul {
 a {
   text-decoration: none;
   color: #56576a;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   font-size: calc(18px);
 }
 .icon {
-  margin: 1%;
-  width: calc(1.5em + 2vw);
-  height: calc(1.5em + 2vw);
+  /* margin: 5%; */
+  width: calc(2em + 1vw);
+  height: calc(2em + 1vh);
 }
 .logo {
   width: 11em;
   height: 10em;
 }
-.dropdown-toggle {
-  outline: 0;
+.row {
+  padding: 1%
 }
-
-.nav-link {
-  border-radius: 0;
-}
-
-.sideMenuList {
-  text-align: left;
+.col-8 {
+  display: flex;
+  align-self: center;
 }
 </style>

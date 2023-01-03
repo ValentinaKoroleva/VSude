@@ -5,19 +5,6 @@
   <p v-if="QAs.length == 0">Нет вопросов, соответствующих запросу</p>
   <h1>{{ title }}</h1>
 
-  <!-- 
-  <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-    <h1>{{ title }}</h1>
-  </button>
-
-<div>
-  <div class="collapse" id="collapseWidthExample">
-    <p class="article" style="white-space:pre-wrap;">
-      {{ categoryInfo }}
-    </p>
-  </div>
-</div> -->
-
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" v-for="el in QAs" :key="el">
       <h2 class="accordion-header" :id="'heading-' + el.id">
