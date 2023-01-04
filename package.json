@@ -8,13 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@firebase/app-types": "0.x",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.9.3",
     "bootstrap": "^5.0.2",
     "bootstrap-icons": "^1.5.0",
     "core-js": "^3.6.5",
     "file-loader": "^6.2.0",
-    "firebase": "^9.1.1",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.4.1",
+    "firebase-tools": "^11.19.0",
     "fs": "0.0.1-security",
     "jquery": "^3.6.0",
     "papaparse": "^5.3.1",

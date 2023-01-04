@@ -239,7 +239,7 @@ pre {
 }
 .accordion-item {
   background: white;
-  width: 98%;
+  width: 90%;
   margin: 2vh;
   border: none;
   border-radius: 18px !important;

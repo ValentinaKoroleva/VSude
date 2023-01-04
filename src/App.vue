@@ -1,5 +1,5 @@
 <template>
-  <heading />
+  <heading v-model:isOfAge="isOfAge"/>
   <search />
   <side-menu />
   <confirm />

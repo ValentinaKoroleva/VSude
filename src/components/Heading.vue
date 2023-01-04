@@ -13,19 +13,29 @@
         </button>
       </div>
 
-      <div class="col-11">
+      <div class="col-9">
         НАСТОЯЩИЙ МАТЕРИАЛ (ИНФОРМАЦИЯ) ПРОИЗВЕДЕН И/ИЛИ РАСПРОСТРАНЕН
         ИНОСТРАННЫМ АГЕНТОМ СПб ОО «ГРАЖДАНСКИЙ КОНТРОЛЬ» ЛИБО КАСАЕТСЯ
         ДЕЯТЕЛЬНОСТИ ИНОСТРАННОГО АГЕНТА СПб ОО «ГРАЖДАНСКИЙ КОНТРОЛЬ»
       </div>
+      <div class="col-1">
+        18+
+</div>
     </div>
   </div>
 </template>
 <style scoped>
 .container {
-    margin: 0;
+  margin: 0;
+  max-width: 90%;
 }
 .bi {
   font-size: 2em;
+}
+.row{
+  justify-content: space-between;
+}
+.col-1{
+  font-size: 1.5em;
 }
 </style>

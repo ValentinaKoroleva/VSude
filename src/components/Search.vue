@@ -120,6 +120,7 @@ export default {
   margin: 0 !important;
   padding: 0 !important;
 }
+
 form {
   width: 100%;
   border-radius: 18px;
@@ -139,7 +140,7 @@ ul {
   /* color: #b1b1b7; */
   /* background: #ece9e9; */
   /* border: #474747; */
-  width: 98%;
+  width: 90%;
   border-radius: 18px;
 }
 /* .custom-search:hover {
