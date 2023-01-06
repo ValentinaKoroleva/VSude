@@ -160,7 +160,7 @@ a.custom-card:hover {
   text-decoration: none;
 }
 .card-text {
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 .card-img-overlay {
   /* background: #ffffff; */

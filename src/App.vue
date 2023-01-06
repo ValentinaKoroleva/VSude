@@ -1,6 +1,6 @@
 <template>
-  <heading v-model:isOfAge="isOfAge"/>
   <search />
+  <heading v-model:isOfAge="isOfAge"/>
   <side-menu />
   <confirm />
   <nav class="navbar fixed-bottom navbar-expand navbar-light bg-light">

@@ -1,12 +1,19 @@
 <template>
-  <nav class="navbar">
-    <div class="container-fluid d-flex flex-nowrap">
-      <!-- <div class="container"> -->
-      <form class="d-flex flex-column">
-        <div class="d-flex flex-row d-flex justify-content-start">
-          <!-- <router-link to="/search"><i class="bi bi-search"></i></router-link> -->
+    <div class="container">
+        <button
+          class="btn"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasLeft"
+          aria-controls="offcanvasLeft"
+        >
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="container search-data">
+          <div class="row">
+        <form class="">
           <input
-            class="form-control me-2 custom-search"
+            class="form-control custom-search"
             type="text"
             placeholder="Поиск"
             aria-label="Поиск"
@@ -16,20 +23,21 @@
             v-on:keyup.enter.prevent
             v-on:click.prevent
           />
-        </div>
-        <div>
-          <ul id="data" v-if="searchInProgress.length > 0">
-            <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
-              <a class="question" :href="'/article/question?id=' + item.id">{{
-                item.q
-              }}</a>
-            </li>
-          </ul>
-        </div>
-      </form>
+        </form>
+      </div>
+        <div class="row answers">
+        <ul id="data" v-if="searchInProgress.length > 0">
+          <li v-for="item in searchInProgress" :key="item.id" :value="item.q">
+            <a class="question" :href="'/article/question?id=' + item.id">{{
+              item.q
+            }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
       <a
         tabindex="0"
-        class="btn d-flex justify-content-start align-self-start"
+        class="btn"
         role="button"
         data-bs-toggle="popover"
         data-bs-trigger="focus"
@@ -37,7 +45,6 @@
         ><i class="bi bi-lightbulb"></i
       ></a>
     </div>
-  </nav>
 </template>
 
 <script>
@@ -52,7 +59,7 @@ export default {
       QAs: [],
       messageResult: "Ничего не найдено",
       list: [],
-      tagTip: 'Введите интересующий вас вопрос'
+      tagTip: "Введите интересующий вас вопрос",
     };
   },
   mounted() {
@@ -119,17 +126,28 @@ export default {
   width: 100%;
   margin: 0 !important;
   padding: 0 !important;
+  display: flex;
+  flex-direction: row;
 }
+.search-data {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 100%;
 
+}
+.answers ul {
+  width: calc(70vw + 3em);
+}
 form {
   width: 100%;
   border-radius: 18px;
-  margin: 1vh;
+  padding: 0
 }
 ul {
-  width: 90%;
+  padding:0;
   border-radius: 18px !important;
-  padding: 2vh !important;
+  /* padding: 2vh !important; */
   position: absolute;
   z-index: 999;
 }
@@ -140,7 +158,7 @@ ul {
   /* color: #b1b1b7; */
   /* background: #ece9e9; */
   /* border: #474747; */
-  width: 90%;
+  width: 100%;
   border-radius: 18px;
 }
 /* .custom-search:hover {
@@ -155,7 +173,6 @@ ul {
   margin: 0;
   padding: 5px 0;
   background-color: white;
-  border-radius: 0 0 5px 5px;
   border: 1px #ccc solid;
 }
 #data li {
@@ -168,12 +185,12 @@ ul {
 }
 .btn-custom {
   width: 10%;
-  background-color:#84C3BE !important;
+  background-color: #84c3be !important;
   color: white !important;
-  margin: 1%
+  margin: 1%;
 }
 .btn-custom:focus {
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 /* label {
   width: 90%;

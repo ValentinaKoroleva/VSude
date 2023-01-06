@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-1">
+  <!-- <div class="container"> -->
+    <!-- <div class="row"> -->
+      <!-- <div class="col-1">
         <button
           class="btn d-flex justify-content-start align-self-start"
           type="button"
@@ -11,18 +11,14 @@
         >
           <i class="bi bi-list"></i>
         </button>
+      </div> -->
+
+      <div class="inoagent-text">
+        Настоящий материал (информация) произведен и/или распространен иностранным агентом Санкт-Петербургской общественной правозащитной организацией «Гражданский контроль» либо касается деятельности иностранного агента Санкт-Петербургской общественной правозащитной организации «Гражданский контроль»
       </div>
 
-      <div class="col-9">
-        НАСТОЯЩИЙ МАТЕРИАЛ (ИНФОРМАЦИЯ) ПРОИЗВЕДЕН И/ИЛИ РАСПРОСТРАНЕН
-        ИНОСТРАННЫМ АГЕНТОМ СПб ОО «ГРАЖДАНСКИЙ КОНТРОЛЬ» ЛИБО КАСАЕТСЯ
-        ДЕЯТЕЛЬНОСТИ ИНОСТРАННОГО АГЕНТА СПб ОО «ГРАЖДАНСКИЙ КОНТРОЛЬ»
-      </div>
-      <div class="col-1">
-        18+
-</div>
-    </div>
-  </div>
+    <!-- </div> -->
+  <!-- </div> -->
 </template>
 <style scoped>
 .container {
@@ -35,7 +31,8 @@
 .row{
   justify-content: space-between;
 }
-.col-1{
-  font-size: 1.5em;
+.inoagent-text {
+  font-size: 2rem;
+  text-align: start;
 }
 </style>
