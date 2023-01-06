@@ -32,6 +32,7 @@
   justify-content: space-between;
 }
 .inoagent-text {
+  margin: 1%;
   font-size: 2rem;
   text-align: start;
 }
