@@ -140,13 +140,6 @@ export default {
           let divGif = this.addGIF(att);
           elementDiv.appendChild(divGif);
         }
-        if (extension == "jpg") {
-          let img = document.createElement("img");
-          img.setAttribute("src", require("../assets/jpgs/" + att));
-          img.setAttribute("alt", "attach");
-          img.setAttribute("style", "width:100%;height:100%");
-          elementDiv.appendChild(img);
-        }
         if (extension == "pdf") {
           let pdfLink = document.createElement("a");
           pdfLink.setAttribute("class", "docx");
